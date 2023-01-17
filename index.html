@@ -22,7 +22,7 @@ Version: 0.1
   </head>
   <body>
     <div class="container-fluid">
-      <div class="row fixed-top g-1">
+      <div class="row ">
         <nav class="navbar navbar-expand-lg bg-dark"  data-bs-theme="dark">
           <div class="container-fluid">
             <a class="navbar-brand text-white" href="#home">
@@ -40,7 +40,7 @@ Version: 0.1
             <div class="collapse navbar-collapse" id="apisNavbar">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link text-white" href="products.html">Products</a>
+                  <a class="nav-link text-white" href="index.html">Products</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link text-white disabled" href="#">About</a>
@@ -69,370 +69,121 @@ Version: 0.1
           </div>
         </nav>
       </div>
-      <div class="row" id="home">
-        <img src="/challenges/apis/banner.png" class="img-fluid p-0">
+
+      <div class="row justify-content-center">
+        <div class="d-none d-lg-block col-lg-8">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Active</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-10 col-lg-2 text-center">
+          <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Filter & Sort</button>
+          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasRightLabel">Filter & Sort</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+        
+              <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                      SORTED BY
+                    </button>
+                  </h2>
+                  <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Name
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                          Price
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                      DIAGNOSTIC FIELD
+                    </button>
+                  </h2>
+                  <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Name
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                          Price
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                      ANOTHER FILTER
+                    </button>
+                  </h2>
+                  <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                          Name
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                        <label class="form-check-label" for="flexCheckChecked">
+                          Price
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+
       <div class="row justify-content-center py-5" id="products" style="background-color: #6c757d36;">
         <div class="col-12 col-md-10">
           <div class="container">
             <div class="row">
-              <p class="fs-3 fw-bold m-0" style="color: #672ec9;">Overview</p>
-              <hr class="mb-4" style="color: #672ec9;">
+              <p class="fs-3 fw-bold m-0" >Products</p>
+              <hr class="mb-4">
             </div>
-            <div class="row" style="text-align: justify;">
-              <p>Stroke represents the second leading cause of mortality worldwide. The key component for immediate diagnosis is the localization (over CT scans) and delineation of lesions ( over MRI studies). The lesions are nonetheless poorly delineated, only visible at advanced stages, and analysis uses manual delineation.</p>
-              <p><b style="color: #672ec9;">APIS Challenge 2023</b> pretends to be a workshop that introduces a paired dataset of CT and ADC studies. The researchers are invited to propose computational strategies that approach paired data, during training, and deal with lesion segmentation over CT onset sequences. During training will be available annotated paired sequences (from one expert), and resultant segmentation for testing will be compared regarding two experts.</p>
-            </div>
-            <div class="row justify-content-center">
-              <div class="col-12 col-md-6">
-                <img class="img-fluid" src="/challenges/apis/data_example.png">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center py-3" id="news">
-        <div class="col-12 col-md-10">
-          <div class="container">
-            <div class="row">
-              <p class="fs-3 fw-bold m-0" style="color: #672ec9;">Dates</p>
-              <hr class="mb-4" style="color: #672ec9;">
-            </div>
-            <div class="row justify-content-center">
-              <div class="col-12 col-md-10">
-                <table class="table table-bordered table-hover">
-                  <tbody>
-                    <tr>
-                      <td><s>19 December 2022</s></td>
-                      <td>Registration opening</td>
-                    </tr>
-                    <tr>
-                      <td><s>26 December 2022</s></td>
-                      <td>Release and distribution of paired CT-ADC cases</td>
-                    </tr>
-                    <tr>
-                      <td>13 January 2023</td>
-                      <td>Release and distribution of annotations by radiologist</td>
-                    </tr>
-                    <tr>
-                      <td>2 February 2023</td>
-                      <td>Workshop to prepare for docker submission</td>
-                    </tr>
-                    <tr>
-                      <td>13 February 2023</td>
-                      <td>Submission opening and release of docker templates for submission</td>
-                    </tr>
-                    <tr>
-                      <td>15 March 2023</td>
-                      <td>Deadline for submissions</td>
-                    </tr>
-                    <tr>
-                      <td>1 April 2023</td>
-                      <td>Presentation of methods and results in challenge website</td>
-                    </tr>
-                    <tr>
-                      <td>18 April 2023</td>
-                      <td>Presentation of results at workshop challenge day</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center py-3" id="account" style="background-color: #6c757d36;">
-        <div class="col-12 col-md-10">
-          <div class="container">
-            <div class="row">
-              <p class="fs-3 fw-bold m-0" style="color: #672ec9;">About</p>
-              <hr class="mb-4" style="color: #672ec9;">
-            </div>
-            <div class="row">
-              <p class="fs-5" style="color: #672ec9;">The APIS Challenge</p>
-            </div>
-            <div class="row" style="text-align: justify;">
-              <p>The <b style="color: #672ec9;">APIS Challenge</b> is a workshop dedicated to stroke segmentation from paired (CT-ADC) dataset. For training, 60 paired studies with CT and ADC image modalities are released, with an associated delineation from an expert radiologist. Regarding the testing stage, a total of 40 studies will be used as validation.</p>
-              <p>We encourage participants to learn projections from ADC and CT sequences and to carry out predicted delineations over CT studies. The challenge claims to capture the generalization capability of proposed approaches, by measuring resultant segmentations from two independent expert radiologists with more than five years of experience. Optionally, authors may generate synthetic ADC images and submit them to the challenge to receive quantitative results from reconstruction metrics.</p>
-              <!-- <p>Following the initiative of <a href="https://grand-challenge.org/about/">Grand Challenge</a>, the challenge is intended to remain the train data public and the website open for new submissions after the <b style="color: #21ad2a;">ISBI 2023</b> conference ends. For further information go to <a href="#participate">participate</a> section in how to participate.</p> -->
-            </div>
-            <div class="row">
-              <p class="fs-5" style="color: #672ec9;">How to participate in APIS challenge?</p>
-            </div>
-            <div class="row" style="text-align: justify;">
-              <p>If you are interested in participating, you are invited to download the training set in <a href="#data">data</a> section, which includes CT and ADC modalities of 60 stroke patients.</p>
-              <p>The website will perform the evaluation of the proposed methods via docker methodology. To complete a successful participation, participants are encouraged to submit an abstract, describing the employed method. All results will be publicly available in <a href="#">results</a> section, only the top 10 results will be displayed in the website.</p>
-              <p>Each participant team are encouraged to submit their method as a poster or journal in any other conference after <b style="color: #21ad2a;">ISBI 2023</b> ends. Eventually, submissions will be included in the workshops post-proceedings and potentially compiled for a high-impact journal paper to summarise and present the findings.</p>
-            </div>
-            <div class="row">
-              <p class="fs-5" style="color: #672ec9;">Prizes</p>
-            </div>
-            <div class="row" style="text-align: justify;">
-              <ul>
-                <li>The three top-performing teams are eligible to participate in a joint publication with the committee sumitting to ___. There is a fixed maximum of two authors per team. The committee will also invite teams that submit particularly novel solutions to join as co-authors.</li>
-                <li>The 10 top-performing teams will have the opportunity to present their results at <b style="color: #21ad2a;">ISBI 2023</b></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center py-3" id="privacy">
-        <div class="col-12 col-md-10">
-          <div class="container">
-            <div class="row">
-              <p class="fs-3 fw-bold m-0" style="color: #672ec9;">Motivation</p>
-              <hr class="mb-4" style="color: #672ec9;">
-            </div>
-            <div class="row" style="text-align: justify;">
-              <p>Strokes are the second leading cause of mortality worldwide, being responsible for the major adult disability in developed countries. A dramatic projection estimates that one in four people over 25 years will suffer a stroke. Ischemic stroke, related to blood vessel occlusion, is the most prevalent condition (80% of all cases). Even worse, this stroke has an associated high morbidity risk. The immediate localization, delineation and quantification of the lesion are fundamental to determining the diagnosis and consequent clinical intervention. </p>
-              <p>Typically, the first sequence taken is a CT without contrast (NCCT), which mainly allows triage between strokes and other pathologies. However, such sequences have poor contrast, low sensitivity and specificity with respect to ischemia, and hypo-attenuation of lesions is time-dependent. Hence, clinical protocols include diffusion weighted MRI sequences, such as ADC (apparent diffusion coefficient) to properly characterize and quantify stroke lesions, allowing among others, to display ischemic penumbra properly and ischemic core. Such characterization is however tedious, time-consuming (around 15 minutes in each case) and prone to errors, introducing an inherent radiologist bias.</p>
-              <p>This challenge introduces the first stroke segmentation challenge (<b style="color: #672ec9;">APIS</b>) with an associated paired (CT-ADC) publicly available dataset. The main approach is to capture the generalization capability of proposed approaches, by measuring resultant segmentations against two independent expert radiologists with more than five years of experience. The proposals should receive CT inputs and generate lesion segmentations.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center py-3" id="data" style="background-color: #6c757d36;">
-        <div class="col-12 col-md-10">
-          <div class="container">
-            <div class="row">
-              <p class="fs-3 fw-bold m-0" style="color: #672ec9;">Data</p>
-              <hr class="mb-4" style="color: #672ec9;">
-            </div>
-            <div class="row" style="text-align: justify;">
-              <p>The proposed challenge was elaborated by <b style="color: #672ec9;">BIVL<sup>2</sup>ab</b> (Biomedical, Imaging and Vision Learning Laboratory) from Universidad Industrial de Santander, in collaboration with <b style="color: #21ad2a;">FOSCAL</b> (Fundacion Oftalmologica de Santander) and <b style="color: #21ad2a;">FOSUNAB</b> (FOSCAL and Universidad Autonoma de Bucaramanga) clinics. The studies were captured using: two CT scanners, namely i) a Toshiba Aquilion 64 TSX-101 and ii) a Toshiba Aquilion one TSX-301/ac scanner, with 64 and 320 detectors, respectively. Also, one Toshiba Vantage Titan MRI scanner was employed for acquisition of different MRI modalities. Such scanners are located at FOSCAL and FOSUNAB clinics in Bucaramanga, Colombia. Spatial resolution for NCCT images was 512x512 px, and 256x256 for most of diffusion sequences.</p>
-              <p>The annotation of ischemic lesions was carried out by two neurointerventional radiologists with more than five years of experience. The annotation protocol involved the examination of DWI B-1000 and ADC images to delineate the damaged tissue in the brain. To achieve a more accurate diagnosis, experts had access to clinical variables previous to the manual delineation of each case. The lesion annotation process was performed on the ADC images by each radiologist individually using the MRICroGL software. Furthermore, the associated NCCT studies were skull-stripped and co-registered w.r.t. labeled ADC sequences. The following figure shows a preview of the image modalities and the respective segmentation mask. The delineated lesions show high variability in shape, size and number of consecutive slices where the lesion occurs.</p>
-            </div>
-            <!-- <div class="row">
-              <p class="fs-5" style="color: #672ec9;">Preprocessing methods</p>
-            </div>
-            <div class="row" style="text-align: justify;">
-              <p></p>
-            </div> -->
-            <!-- <div class="row">
-              <p class="fs-5" style="color: #672ec9;">Download the data</p>
-            </div>
-            <div class="row" style="text-align: justify;">
-              <p></p>
-            </div> -->
-          </div>
-        </div>
-      </div>
-      <!-- <div class="row justify-content-center py-3" id="rules">
-        <div class="container">
 
-        </div>
-      </div> -->
-      <div class="row justify-content-center py-3" id="participate" style="background-color: #6c757d36;">
-        <div class="col-12 col-md-10">
-          <div class="container">
-            <div class="row">
-              <p class="fs-3 fw-bold m-0" style="color: #672ec9;">Participate</p>
-              <hr class="mb-4" style="color: #672ec9;">
-            </div>
-            <div class="row" style="text-align: justify;">
-              <p>The data distribution, registration and automatic evaluation will be handled by <b style="color: #672ec9;">BIVL<sup>2</sup>ab</b> team. The following link let you register into the challenge and await for the administrators confirmation in participating.</p>
-            </div>
-            <div class="row justify-content-center mb-3">
-              <div class="col-10 col-md-4 text-center">
-                <a class="btn btn-secondary btn-lg" href="https://docs.google.com/forms/d/10KX5r9OGZvpl9UXxVDtq1nfCwq6J9IO5-5_1nhTlqM4/edit" style="
-                background-color: #672ec9;" role="button">Team registration</a>
-              </div>
-            </div>
-            <div class="row" style="text-align: justify;">
-              <p>It is highly recommended to use your <b>institutional email address</b> for the registration. Please note that while you can use non-institutional emails (e.g. Gmail, Hotmail, Yahoo, etc.) your request might be refused depending on the license model of the dataset and its intended use. The registration form will ask you for previous experience and interest in participating on the challenge.</p>
-            </div>
-            <div class="row">
-              <p class="fs-5" style="color: #672ec9;">After registration</p>
-            </div>
-            <div class="row" style="text-align: justify;">
-              <p>You will receive an email with an acceptance or decline in your team participating telling you the reasons. On other mail, you will find an unique link to download the dataset with a 7 day expire date. In case you didn't get to download the data, please send an email to <b><a href="mailto:santiago.gomez1@saber.uis.edu.co" style="color: #672ec9;">Santiago Gomez</a></b> to generate a new link.</p>
-            </div>
           </div>
         </div>
       </div>
-      <div class="row justify-content-center py-3" id="organizers">
-        <div class="col-12 col-md-10">
-          <div class="container">
-            <div class="row">
-              <p class="fs-3 fw-bold m-0" style="color: #672ec9;">Organizers</p>
-              <hr class="mb-4" style="color: #672ec9;">
-            </div>
-            <div class="row justify-content-center">
-              <div class="col-12 col-md-5 border border-secondary rounded p-3 m-3">
-                <div class="container">
-                  <div class="row mb-3 align-items-center">
-                    <div class="col-3">
-                      <img class="img-fluid border border-dark rounded-circle" src="/challenges/apis/bios/santiago.png">
-                    </div>
-                    <div class="col-9">
-                      <p class="fs-5 fw-bold m-0">Santiago Gómez</p>
-                      <p class="fs-6 text-muted m-0">Challenge Leader</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <p style="text-align: justify;">
-                      Santiago Gómez is a computer science graduate student at Universidad Industrial de Santander. He is part of <b style="color: #672ec9;">BIVL<sup>2</sup>ab</b> research group (Biomedical Imaging, Vision and Learning Laboratory). His major interests are in deep learning and medical image applications.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-5 border border-secondary rounded p-3 m-3">
-                <div class="container">
-                  <div class="row mb-3 align-items-center">
-                    <div class="col-3">
-                      <img class="img-fluid border border-dark rounded-circle" src="/challenges/apis/bios/daniel.png">
-                    </div>
-                    <div class="col-9">
-                      <p class="fs-5 fw-bold m-0">Daniel Eduardo Mantilla García</p>
-                      <p class="fs-6 text-muted m-0">Expert Radiologist</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <p style="text-align: justify;">
-                      Daniel Eduardo Mantilla García is a Diagnostic and Interventional Neuroradiologist and the director of the Interventional Neuroradiology department at <b style="color: #21ad2a;">FOSCAL</b> Clinic. Currently coursing his fifth year as PhD candidate at the mathematics school at Montpellier University. His research interests include topics about Interventional Neuroradiology.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-5 border border-secondary rounded p-3 m-3">
-                <div class="container">
-                  <div class="row mb-3 align-items-center">
-                    <div class="col-3">
-                      <img class="img-fluid border border-dark rounded-circle" src="/challenges/apis/bios/gustavo.png">
-                    </div>
-                    <div class="col-9">
-                      <p class="fs-5 fw-bold m-0">Gustavo Garzón</p>
-                      <p class="fs-6 text-muted m-0">Research assistant</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <p style="text-align: justify;">
-                      Gustavo Garzón is currently a PhD candidate and adjunct professor at Universidad Industrial de Santander (Colombia). He is part of <b style="color: #672ec9;">BIVL<sup>2</sup>ab</b> research group (Biomedical Imaging, Vision and Learning Laboratory). His major interests are computer vision, deep learning and medical imaging processing.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-5 border border-secondary rounded p-3 m-3">
-                <div class="container">
-                  <div class="row mb-3 align-items-center">
-                    <div class="col-3">
-                      <img class="img-fluid border border-dark rounded-circle" src="/challenges/apis/bios/edgar.jpg">
-                    </div>
-                    <div class="col-9">
-                      <p class="fs-5 fw-bold m-0">Edgar Rangel Pieschacon</p>
-                      <p class="fs-6 text-muted m-0">Laboratory Chief and Challenge Support</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <p style="text-align: justify;">
-                      Edgar Rangel Pieschacon is a computer science doctoral student at Universidad Industrial de Santander. He is the laboratory chief of <b style="color: #672ec9;">BIVL<sup>2</sup>ab</b> research group (Biomedical Imaging, Vision and Learning Laboratory). His major interests are machine learning, applied statistics and applications related to medical imaging processing.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-5 border border-secondary rounded p-3 m-3">
-                <div class="container">
-                  <div class="row mb-3 align-items-center">
-                    <div class="col-3">
-                      <img class="img-fluid border border-dark rounded-circle" src="/challenges/apis/bios/andres.jpg">
-                    </div>
-                    <div class="col-9">
-                      <p class="fs-5 fw-bold m-0">Andres Felipe Ortiz</p>
-                      <p class="fs-6 text-muted m-0">Expert Radiologist</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <p style="text-align: justify;">
-                      Andres Felipe Ortiz is a Interventional Neuroradiologist fellow at the Universidad Autónoma of Bucaramanga (UNAB) - Clinica Ardila Lulle and a diagnostic radiologist who graduated from the Universidad Nacional de Colombia. His research interests include topics in neurointerventionism.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-5 border border-secondary rounded p-3 m-3">
-                <div class="container">
-                  <div class="row mb-3 align-items-center">
-                    <div class="col-3">
-                      <img class="img-fluid border border-dark rounded-circle" src="/challenges/apis/bios/daniela.jpg">
-                    </div>
-                    <div class="col-9">
-                      <p class="fs-5 fw-bold m-0">Daniela D Vera</p>
-                      <p class="fs-6 text-muted m-0">Research assistant</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <p style="text-align: justify;">
-                      Daniela D Vera is a Physician who graduated from the Universidad Autónoma de Bucaramanga (UNAB). Currently belongs to the Radiology and Diagnostic Imaging group of <b style="color: #21ad2a;">FOSCAL</b> clinic. His research interests include interventional radiology topics and radiology and diagnostic images.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-5 border border-secondary rounded p-3 m-3">
-                <div class="container">
-                  <div class="row mb-3 align-items-center">
-                    <div class="col-3">
-                      <img class="img-fluid border border-dark rounded-circle" src="/challenges/apis/bios/fabio.png">
-                    </div>
-                    <div class="col-9">
-                      <p class="fs-5 fw-bold m-0">Fabio Martínez</p>
-                      <p class="fs-6 text-muted m-0">Director and Advisor</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <p style="text-align: justify;">
-                      Fabio Martínez is currently a full-time professor at Universidad Industrial de Santander on the Computer Engineering and Informatics School. He is the director of <b style="color: #672ec9;">BIVL<sup>2</sup>ab</b> research group (Biomedical Imaging, Vision and Learning Laboratory). His principal interests are related to machine learning, computer vision, and medical imaging processing.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12 col-md-5 border border-secondary rounded p-3 m-3">
-                <div class="container">
-                  <div class="row mb-3 align-items-center">
-                    <div class="col-3">
-                      <img class="img-fluid border border-dark rounded-circle" src="/challenges/apis/bios/paul.png">
-                    </div>
-                    <div class="col-9">
-                      <p class="fs-5 fw-bold m-0">Paul Anthony Camacho López</p>
-                      <p class="fs-6 text-muted m-0">Clinical Director</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <p style="text-align: justify;">
-                      Paul Anthony Camacho López is the director of reasearch and development department at <b style="color: #21ad2a;">FOSCAL</b> Clinical Center (Fundacion Oftalmologica de Santander). He is a surgeon, epidemiologist, health care administrator and researcher. He obtained his master's degree in epidemiology in the Universidad Industrial de Santander and graduated as a physician from the Universidad Nacional de Bogotá.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center align-items-center py-3 border border-secondary rounded-pill">
-        <div class="col-6 col-md-2 text-center">
-          <a href="https://uis.edu.co/inicio">
-            <img class="img-fluid" src="/challenges/logos/uis.png">
-          </a>
-        </div>
-        <div class="col-6 col-md-2 text-center">
-          <a href="">
-            <img class="img-fluid" src="/challenges/logos/bivl2ab.svg" style="height: 5em;">
-          </a>
-        </div>
-        <div class="col-6 col-md-2 text-center">
-          <a href="http://www.foscal.com.co">
-            <img class="img-fluid" src="/challenges/logos/foscal.png">
-          </a>
-        </div>
-        <div class="col-6 col-md-4 text-center">
-          <a href="https://minciencias.gov.co/">
-            <img class="img-fluid rounded-pill" src="/challenges/logos/minciencias.jpg">
-          </a>
-        </div>
-        <div class="col-6 col-md-2 text-center">
-          <a href="http://2023.biomedicalimaging.org/en/">
-            <img class="img-fluid" src="/challenges/logos/isbi.png" style="height: 4.5em;">
-          </a>
-        </div>
-      </div>
+      
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 

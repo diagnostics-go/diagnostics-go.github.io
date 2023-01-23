@@ -63,6 +63,11 @@ for col in data.columns:
         specific_tests.append(col)
 assert len(specific_tests) + len(reserved_columns) == data.shape[1]
 
+with open("./data.js", "a") as data_file:
+    print("""get_specific_tests = () => {{
+    return {}
+}};""".format(specific_tests), file=data_file)
+
 all_products = []
 for idx in data.index:
     company = data.loc[idx, "Unternehmen"]
@@ -74,18 +79,18 @@ for idx in data.index:
     if pd.isna(company):
         company = "N/A"
 #         raise AssertionError("There is a product without company cell. Its index is {}".format(idx+2))
-    elif pd.isna(name):
+    if pd.isna(name):
         name = "N/A"
-    elif pd.isna(disposables):
+    if pd.isna(disposables):
         disposables = "W/O Info"
 #         raise AssertionError("There is a product without any hardware or disposable elements. Its index is {}".format(idx+2))
-    elif pd.isna(area):
+    if pd.isna(area):
         area = "Unknow"
 #         raise AssertionError("There is a product without the diagnostic field, this is mandatory. Its index is {}".format(idx+2))
-    elif len(subareas[~pd.isna(subareas)].values) == 0:
+    if len(subareas[~pd.isna(subareas)].values) == 0:
         subareas = ["W/O Info"]
 #         raise AssertionError("There is a product without any diagnostic field detail, is mandatory to have at least one. Its index is {}".format(idx+2))
-    elif len(tests[~pd.isna(tests)].index) == 0:
+    if len(tests[~pd.isna(tests)].index) == 0:
         tests = ["W/O Info"]
 #         raise AssertionError("There is a product without any specific test, is mandatory to have at least one. Its index is {}".format(idx+2))
     product = {

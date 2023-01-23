@@ -12,7 +12,7 @@ create_product_card = (brand, product_name, disposables, area, subareas, tests) 
     img.src = "/gray_img.png";
     img.classList.add("card-img-top", "d-none", "d-lg-flex");
     img.style.maxHeight = "20vh";
-    parent_card.appendChild(img);
+    //parent_card.appendChild(img);
 
     let card_body = document.createElement("div");
     card_body.classList.add("card-body");
@@ -32,7 +32,7 @@ create_product_card = (brand, product_name, disposables, area, subareas, tests) 
     badges = badges.concat(subareas.slice(0,3), tests.slice(0,3));
     for (let idx in badges){
         let categories = document.createElement("span");
-        categories.classList.add("badge", "rounded-pill");
+        categories.classList.add("badge", "rounded-pill", "text-wrap", "m-1");
         if (idx == 0){
             categories.classList.add("text-bg-success");
         }

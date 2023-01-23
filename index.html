@@ -1,6 +1,6 @@
 <!-- 
 Made by: Edgar RP (JefeLitman) & Lina Ruiz
-Version: 0.1.4
+Version: 0.1.6
 -->
 <!doctype html>
 <html lang="de">
@@ -9,259 +9,65 @@ Version: 0.1.4
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <title>Diagnostics-Go</title>
-    <!-- <link rel="icon" type="image/png" sizes="32x32" href="/challenges/icons/apis/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/challenges/icons/apis/favicon-16x16.png">
-    <meta name="theme-color" content="#672ec9">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="assets">
-    <link rel="apple-touch-icon" href="/challenges/icons/apis/apple-touch-icon.png">
-    <meta name="msapplication-TileImage" content="/challenges/icons/apis/mstile-150x150.png">
-    <meta name="msapplication-TileColor" content="#672ec9"> -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#000000">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <link href="/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   </head>
   <body>
     <div class="container-fluid">
-      <div class="row">
-        <nav  id="navbar"> </nav>
-        <script src="navbar.js"></script>
-      </div>
-      <div class="row justify-content-center mt-3">
-        <div class="d-none d-lg-block col-lg-8">
-          <nav>
-            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-              <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true" style="color: black;"> All Products </button>
-              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false" style="color: black;"> Point of Care </button>
-              <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false" style="color: black;"> Another Diagnostic </button>
-            </div>
-          </nav>
-          <div class="tab-content" id="nav-tabContent">
-            <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">...</div>
-            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
-            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
-          </div>
-        </div>
-        <div class="col-10 col-lg-2 text-center">
-          <button class="btn btn-outline-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Filter & Sort</button>
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasRightLabel">Filter & Sort</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <div class="row mb-3">
-                <form class="d-flex" role="search">
-                  <input class="form-control me-1" type="search" placeholder="Input" aria-label="Search">
-                  <button class="btn btn-outline-dark" type="submit">Search</button>
-                </form>
+      <div id="navbar" class="row"></div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-12 col-lg-10">
+          <div id="homepage" class="carousel slide">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#homepage" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#homepage" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#homepage" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>          
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="/gray_img.png" class="d-block w-100" alt="Gray image" style="max-height: 80vh;">
+                <div class="carousel-caption d-none d-lg-block">
+                  <h5>First slide label</h5>
+                  <p>Some representative placeholder content for the first slide.</p>
+                </div>
               </div>
-
-              <div class="accordion accordion-flush" id="accordionFlushExample">
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="flush-headingOne">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne"> SORTED BY </button>
-                  </h2>
-                  <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
-                      <div class="form-check" style="text-align: left">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label"  for="flexCheckDefault"> Name </label>
-                      </div>
-                      <div class="form-check" style="text-align: left">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                        <label class="form-check-label" for="flexCheckChecked"> Price </label>
-                      </div>
-                    </div>
-                  </div>
+              <div class="carousel-item">
+                <img src="/gray_img.png" class="d-block w-100" alt="Gray image" style="max-height: 80vh;">
+                <div class="carousel-caption d-none d-lg-block">
+                  <h5>Second slide label</h5>
+                  <p>Some representative placeholder content for the second slide.</p>
                 </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="flush-headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo"> DIAGNOSTIC FIELD </button>
-                  </h2>
-                  <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
-                      <div class="form-check" style="text-align: left">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault"> Name </label>
-                      </div>
-                      <div class="form-check" style="text-align: left">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                        <label class="form-check-label" for="flexCheckChecked"> Price </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="accordion-item">
-                  <h2 class="accordion-header" id="flush-headingThree">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree"> ANOTHER FILTER </button>
-                  </h2>
-                  <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                    <div class="accordion-body">
-                      <div class="form-check" style="text-align: left">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault"> Name </label>
-                      </div>
-                      <div class="form-check" style="text-align: left">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                        <label class="form-check-label" for="flexCheckChecked"> Price </label>
-                      </div>
-                    </div>
-                  </div>
+              </div>
+              <div class="carousel-item">
+                <img src="/gray_img.png" class="d-block w-100" alt="Gray image" style="max-height: 80vh;">
+                <div class="carousel-caption d-none d-lg-block">
+                  <h5>Third slide label</h5>
+                  <p>Some representative placeholder content for the third slide.</p>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <div class="col-10 col-lg-3 my-3">
-          <div class="card">
-            <svg class="card-img-top d-none d-lg-flex" width="100%" height="180" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#868e96"></rect></svg>
-            <div class="card-body">
-              <h5 class="card-title">Abbott i-STAT</h5>
-              <p class="card-text">EC8+, CG8+, EG7+, Chem8+, EG6+, CG4+, 6+, G3+, EC4+, E3+, G, Crea, ACTk, ACTc, PT/INR, beta-hCG, cTnI, CK-MB, BNP</p>
-              <span class="badge text-bg-success">Point of Care</span>
-              <span class="badge text-bg-success">Blutgasanalyse</span>
-              <span class="badge text-bg-success">Chemie/ Elektrolyte</span>
-              <span class="badge text-bg-success">Endokrinologie</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-10 col-lg-3 my-3">
-          <div class="card">
-            <svg class="card-img-top d-none d-lg-flex" width="100%" height="180" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#868e96"></rect></svg>
-            <div class="card-body">
-              <h5 class="card-title">Abbott i-STAT</h5>
-              <p class="card-text">EC8+, CG8+, EG7+, Chem8+, EG6+, CG4+, 6+, G3+, EC4+, E3+, G, Crea, ACTk, ACTc, PT/INR, beta-hCG, cTnI, CK-MB, BNP</p>
-              <span class="badge text-bg-success">Point of Care</span>
-              <span class="badge text-bg-success">Blutgasanalyse</span>
-              <span class="badge text-bg-success">Chemie/ Elektrolyte</span>
-              <span class="badge text-bg-success">Endokrinologie</span>
-            </div>
-          </div>
-        </div><div class="col-10 col-lg-3 my-3">
-          <div class="card">
-            <svg class="card-img-top d-none d-lg-flex" width="100%" height="180" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#868e96"></rect></svg>
-            <div class="card-body">
-              <h5 class="card-title">Abbott i-STAT</h5>
-              <p class="card-text">EC8+, CG8+, EG7+, Chem8+, EG6+, CG4+, 6+, G3+, EC4+, E3+, G, Crea, ACTk, ACTc, PT/INR, beta-hCG, cTnI, CK-MB, BNP</p>
-              <span class="badge text-bg-success">Point of Care</span>
-              <span class="badge text-bg-success">Blutgasanalyse</span>
-              <span class="badge text-bg-success">Chemie/ Elektrolyte</span>
-              <span class="badge text-bg-success">Endokrinologie</span>
-            </div>
-          </div>
-        </div><div class="col-10 col-lg-3 my-3">
-          <div class="card">
-            <svg class="card-img-top d-none d-lg-flex" width="100%" height="180" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#868e96"></rect></svg>
-            <div class="card-body">
-              <h5 class="card-title">Abbott i-STAT</h5>
-              <p class="card-text">EC8+, CG8+, EG7+, Chem8+, EG6+, CG4+, 6+, G3+, EC4+, E3+, G, Crea, ACTk, ACTc, PT/INR, beta-hCG, cTnI, CK-MB, BNP</p>
-              <span class="badge text-bg-success">Point of Care</span>
-              <span class="badge text-bg-success">Blutgasanalyse</span>
-              <span class="badge text-bg-success">Chemie/ Elektrolyte</span>
-              <span class="badge text-bg-success">Endokrinologie</span>
-            </div>
-          </div>
-        </div><div class="col-10 col-lg-3 my-3">
-          <div class="card">
-            <svg class="card-img-top d-none d-lg-flex" width="100%" height="180" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#868e96"></rect></svg>
-            <div class="card-body">
-              <h5 class="card-title">Abbott i-STAT</h5>
-              <p class="card-text">EC8+, CG8+, EG7+, Chem8+, EG6+, CG4+, 6+, G3+, EC4+, E3+, G, Crea, ACTk, ACTc, PT/INR, beta-hCG, cTnI, CK-MB, BNP</p>
-              <span class="badge text-bg-success">Point of Care</span>
-              <span class="badge text-bg-success">Blutgasanalyse</span>
-              <span class="badge text-bg-success">Chemie/ Elektrolyte</span>
-              <span class="badge text-bg-success">Endokrinologie</span>
-            </div>
-          </div>
-        </div><div class="col-10 col-lg-3 my-3">
-          <div class="card">
-            <svg class="card-img-top d-none d-lg-flex" width="100%" height="180" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#868e96"></rect></svg>
-            <div class="card-body">
-              <h5 class="card-title">Abbott i-STAT</h5>
-              <p class="card-text">EC8+, CG8+, EG7+, Chem8+, EG6+, CG4+, 6+, G3+, EC4+, E3+, G, Crea, ACTk, ACTc, PT/INR, beta-hCG, cTnI, CK-MB, BNP</p>
-              <span class="badge text-bg-success">Point of Care</span>
-              <span class="badge text-bg-success">Blutgasanalyse</span>
-              <span class="badge text-bg-success">Chemie/ Elektrolyte</span>
-              <span class="badge text-bg-success">Endokrinologie</span>
-            </div>
-          </div>
-        </div><div class="col-10 col-lg-3 my-3">
-          <div class="card">
-            <svg class="card-img-top d-none d-lg-flex" width="100%" height="180" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#868e96"></rect></svg>
-            <div class="card-body">
-              <h5 class="card-title">Abbott i-STAT</h5>
-              <p class="card-text">EC8+, CG8+, EG7+, Chem8+, EG6+, CG4+, 6+, G3+, EC4+, E3+, G, Crea, ACTk, ACTc, PT/INR, beta-hCG, cTnI, CK-MB, BNP</p>
-              <span class="badge text-bg-success">Point of Care</span>
-              <span class="badge text-bg-success">Blutgasanalyse</span>
-              <span class="badge text-bg-success">Chemie/ Elektrolyte</span>
-              <span class="badge text-bg-success">Endokrinologie</span>
-            </div>
-          </div>
-        </div><div class="col-10 col-lg-3 my-3">
-          <div class="card">
-            <svg class="card-img-top d-none d-lg-flex" width="100%" height="180" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#868e96"></rect></svg>
-            <div class="card-body">
-              <h5 class="card-title">Abbott i-STAT</h5>
-              <p class="card-text">EC8+, CG8+, EG7+, Chem8+, EG6+, CG4+, 6+, G3+, EC4+, E3+, G, Crea, ACTk, ACTc, PT/INR, beta-hCG, cTnI, CK-MB, BNP</p>
-              <span class="badge text-bg-success">Point of Care</span>
-              <span class="badge text-bg-success">Blutgasanalyse</span>
-              <span class="badge text-bg-success">Chemie/ Elektrolyte</span>
-              <span class="badge text-bg-success">Endokrinologie</span>
-            </div>
-          </div>
-        </div><div class="col-10 col-lg-3 my-3">
-          <div class="card">
-            <svg class="card-img-top d-none d-lg-flex" width="100%" height="180" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#868e96"></rect></svg>
-            <div class="card-body">
-              <h5 class="card-title">Abbott i-STAT</h5>
-              <p class="card-text">EC8+, CG8+, EG7+, Chem8+, EG6+, CG4+, 6+, G3+, EC4+, E3+, G, Crea, ACTk, ACTc, PT/INR, beta-hCG, cTnI, CK-MB, BNP</p>
-              <span class="badge text-bg-success">Point of Care</span>
-              <span class="badge text-bg-success">Blutgasanalyse</span>
-              <span class="badge text-bg-success">Chemie/ Elektrolyte</span>
-              <span class="badge text-bg-success">Endokrinologie</span>
-            </div>
-          </div>
-        </div><div class="col-10 col-lg-3 my-3">
-          <div class="card">
-            <svg class="card-img-top d-none d-lg-flex" width="100%" height="180" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#868e96"></rect></svg>
-            <div class="card-body">
-              <h5 class="card-title">Abbott i-STAT</h5>
-              <p class="card-text">EC8+, CG8+, EG7+, Chem8+, EG6+, CG4+, 6+, G3+, EC4+, E3+, G, Crea, ACTk, ACTc, PT/INR, beta-hCG, cTnI, CK-MB, BNP</p>
-              <span class="badge text-bg-success">Point of Care</span>
-              <span class="badge text-bg-success">Blutgasanalyse</span>
-              <span class="badge text-bg-success">Chemie/ Elektrolyte</span>
-              <span class="badge text-bg-success">Endokrinologie</span>
-            </div>
-          </div>
-        </div><div class="col-10 col-lg-3 my-3">
-          <div class="card">
-            <svg class="card-img-top d-none d-lg-flex" width="100%" height="180" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#868e96"></rect></svg>
-            <div class="card-body">
-              <h5 class="card-title">Abbott i-STAT</h5>
-              <p class="card-text">EC8+, CG8+, EG7+, Chem8+, EG6+, CG4+, 6+, G3+, EC4+, E3+, G, Crea, ACTk, ACTc, PT/INR, beta-hCG, cTnI, CK-MB, BNP</p>
-              <span class="badge text-bg-success">Point of Care</span>
-              <span class="badge text-bg-success">Blutgasanalyse</span>
-              <span class="badge text-bg-success">Chemie/ Elektrolyte</span>
-              <span class="badge text-bg-success">Endokrinologie</span>
-            </div>
-          </div>
-        </div><div class="col-10 col-lg-3 my-3">
-          <div class="card">
-            <svg class="card-img-top d-none d-lg-flex" width="100%" height="180" role="img" aria-label="Placeholder: Image cap" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#868e96"></rect></svg>
-            <div class="card-body">
-              <h5 class="card-title">Abbott i-STAT</h5>
-              <p class="card-text">EC8+, CG8+, EG7+, Chem8+, EG6+, CG4+, 6+, G3+, EC4+, E3+, G, Crea, ACTk, ACTc, PT/INR, beta-hCG, cTnI, CK-MB, BNP</p>
-              <span class="badge text-bg-success">Point of Care</span>
-              <span class="badge text-bg-success">Blutgasanalyse</span>
-              <span class="badge text-bg-success">Chemie/ Elektrolyte</span>
-              <span class="badge text-bg-success">Endokrinologie</span>
-            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#homepage" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#homepage" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="/nav.js"></script>
+    <script>
+      create_nav_header()
+    </script>
   </body>
 </html>

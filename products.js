@@ -48,21 +48,45 @@ create_product_card = (brand, product_name, disposables, area, subareas, tests) 
     return parent_card;
 }
 
-display_products = (products) => {
+display_products = (products, id) => {
     // Always require a div container with the id 'products'
-    let product_div = document.getElementById("products");
+    let product_div = document.getElementById(id);
     for (let product of products){
         let responsive_div = document.createElement("div");
         responsive_div.classList.add("col-10", "col-lg-3", "my-3");
-        responsive_div.appendChild(create_product_card(
-            product.company,
-            product.name,
-            product.disposables,
-            product.area,
-            product.subareas,
-            product.tests
-        ));
-        product_div.appendChild(responsive_div);
+        if (id == "products"){
+            responsive_div.appendChild(create_product_card(
+                product.company,
+                product.name,
+                product.disposables,
+                product.area,
+                product.subareas,
+                product.tests
+            ));
+            product_div.appendChild(responsive_div);
+        }
+        if (product.area == "Point of Care" && id == "pointofcare"){
+            responsive_div.appendChild(create_product_card(
+                product.company,
+                product.name,
+                product.disposables,
+                product.area,
+                product.subareas,
+                product.tests
+            ));
+            product_div.appendChild(responsive_div);
+        }
+        if (product.area == "Labor" && id == "labor"){
+            responsive_div.appendChild(create_product_card(
+                product.company,
+                product.name,
+                product.disposables,
+                product.area,
+                product.subareas,
+                product.tests
+            ));
+            product_div.appendChild(responsive_div);
+        }
     }
     return true;
 }

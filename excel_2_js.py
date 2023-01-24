@@ -4,6 +4,7 @@ Version: 1.0
 """
 
 import pandas as pd
+import numpy as np
 
 data = pd.read_excel("./data.xlsx")
 
@@ -48,7 +49,7 @@ for sub in subsections:
 with open("./data.js", "a") as data_file:
     print("""get_diagnostics_subfields = () => {{
     return {}
-}};""".format(cleaned_subsections), file=data_file)
+}};""".format(np.unique(cleaned_subsections).tolist()), file=data_file)
 
 reserved_columns = [
     "Unternehmen", 

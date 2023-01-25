@@ -1,0 +1,18 @@
+/* 
+This file contains all the code to generate and create the elements of filters inside the page
+Made by: Edgar RP (JefeLitman) & Lina Ruiz 
+Version: 1.0.0
+*/
+.form-control:focus{border-color: #e9ecef; box-shadow: 0 0 0 1px rgba(136, 138, 139, 0.25);}
+.accordion-button:not(.collapsed){color: black; background-color: rgba(136, 138, 139, 0.25);
+  box-shadow: 0 0 0 1px rgba(136, 138, 139, 0.25);}
+.accordion-button:link, .accordion-button:visited, .accordion-button:hover, .accordion-button:active  {
+    background-color: black !important; color:#FFF !important;}
+.accordion-button:focus {
+  z-index: 3; border-color: #FFF !important; box-shadow: 0 0 0 .25rem #FFF !important;}
+.accordion button:hover::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='white'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}
+.accordion-button:not(.collapsed)::after {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='black'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+}

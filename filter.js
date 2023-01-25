@@ -76,3 +76,27 @@ create_accordion = (companies, diagnostics_fields, diagnostics_subfields, specif
     }
     return true;
 }
+
+search_engine = (event, objectData = []) => {
+    const input = event.toLowerCase();
+    const keys = Object.keys(objectData[0]);
+    const result = objectData.filter((data) => {
+        return keys.some((key) => {
+            if (key == "subareas" || key == "tests"){
+                data[key].forEach((value, index) => {
+                    return (
+                        (value !== undefined && value !== null && 
+                        value.toLowerCase().trim().includes(input))
+                    );
+                });
+            } 
+            else{ 
+                return (
+                    (data[key] !== undefined && data[key] !== null && 
+                    data[key].toLowerCase().trim().includes(input))
+                );
+            }
+        });
+    });
+    console.log(result);
+}

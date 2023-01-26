@@ -1,6 +1,6 @@
 <!-- 
 Made by: Edgar RP (JefeLitman) & Lina Ruiz
-Version: 0.1.7
+Version: 0.1.8
 -->
 <!doctype html>
 <html lang="de">
@@ -27,11 +27,7 @@ Version: 0.1.7
       <div id="navbar" class="row"></div>
       <div class="row justify-content-center mt-3">
         <div class="d-none d-lg-block col-lg-8">
-          <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-              <button class="nav-link active" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all" type="button" role="tab" aria-controls="nav-all" aria-selected="true" style="color: black;" onclick="display_products(get_all_products(), 'products');">All</button>
-              <button class="nav-link" id="nav-point-tab" data-bs-toggle="tab" data-bs-target="#nav-point" type="button" role="tab" aria-controls="nav-point" aria-selected="false" style="color: black;"  onclick="display_products(get_all_products(), 'pointofcare');">Point of Care</button>
-              <button class="nav-link" id="nav-labor-tab" data-bs-toggle="tab" data-bs-target="#nav-labor" type="button" role="tab" aria-controls="nav-labor" aria-selected="false" style="color: black;" onclick="display_products(get_all_products(), 'labor');">Labor</button>
-          </div>
+          <div id="tab-header"></div>
         </div>
         <div class="col-10 col-lg-2 text-center">
           <button class="btn btn-outline-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Filter & Sort</button>
@@ -51,35 +47,7 @@ Version: 0.1.7
             </div>
           </div>
         </div>
-        <div class="tab-content" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab" tabindex="0">
-            <div class="row justify-content-center">
-              <div class="col-10">
-                <div class="container-fluid">
-                  <div id="products" class="row align-items-top justify-content-center"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="nav-point" role="tabpanel" aria-labelledby="nav-point-tab" tabindex="0">
-            <div class="row justify-content-center">
-              <div class="col-10">
-                <div class="container-fluid">
-                  <div id="pointofcare" class="row align-items-top justify-content-center"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane fade" id="nav-labor" role="tabpanel" aria-labelledby="nav-labor-tab" tabindex="0">
-            <div class="row justify-content-center">
-              <div class="col-10">
-                <div class="container-fluid">
-                  <div id="labor" class="row align-items-top justify-content-center"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div id="nav-tabContent"> </div>
       </div>
       
     </div>
@@ -88,10 +56,16 @@ Version: 0.1.7
     <script src="/data.js"></script>
     <script src="/products.js"></script>
     <script src="/filter.js"></script>
+    <script src="/filter_nav.js"></script>
     <script>
       create_nav_header();
-      display_products(get_all_products(), 'products');
       create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
+      create_tabs(get_diagnostics_fields());
+      display_products(get_all_products(), 'all');
+      
+      document.getElementById('labor').onclick = display_products(get_all_products(), 'labor');
+      document.getElementById('all').onclick = display_products(get_all_products(), 'all');
+      document.getElementById('pointofcare').onclick = display_products(get_all_products(), 'pointofcare');
     </script>
   </body>
 </html>

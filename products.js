@@ -1,7 +1,7 @@
 /* 
 This file contains all the code to generate and create the elements of products inside the page
 Made by: Edgar RP (JefeLitman) & Lina Ruiz 
-Version: 1.0.0
+Version: 1.0.1
 */
 
 create_product_card = (brand, product_name, disposables, area, subareas, tests) => {
@@ -54,7 +54,7 @@ display_products = (products, id) => {
     for (let product of products){
         let responsive_div = document.createElement("div");
         responsive_div.classList.add("col-10", "col-lg-3", "my-3");
-        if (id == "products"){
+        if (id == "all"){
             responsive_div.appendChild(create_product_card(
                 product.company,
                 product.name,

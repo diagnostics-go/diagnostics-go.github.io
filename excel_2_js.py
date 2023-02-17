@@ -1,8 +1,9 @@
 """This file works as the main source to check and transform the excel file into a js file with all the products in it.
 Made by: Edgar RP (JefeLitman) & Lina Ruiz
-Version: 1.0
+Version: 1.1
 """
 
+import numpy as np
 import pandas as pd
 
 data = pd.read_excel("./data.xlsx")
@@ -48,7 +49,7 @@ for sub in subsections:
 with open("./data.js", "a") as data_file:
     print("""get_diagnostics_subfields = () => {{
     return {}
-}};""".format(cleaned_subsections), file=data_file)
+}};""".format(np.unique(cleaned_subsections).tolist()), file=data_file)
 
 reserved_columns = [
     "Unternehmen", 
@@ -63,6 +64,11 @@ for col in data.columns:
         specific_tests.append(col)
 assert len(specific_tests) + len(reserved_columns) == data.shape[1]
 
+with open("./data.js", "a") as data_file:
+    print("""get_specific_tests = () => {{
+    return {}
+}};""".format(specific_tests), file=data_file)
+
 all_products = []
 for idx in data.index:
     company = data.loc[idx, "Unternehmen"]
@@ -74,18 +80,18 @@ for idx in data.index:
     if pd.isna(company):
         company = "N/A"
 #         raise AssertionError("There is a product without company cell. Its index is {}".format(idx+2))
-    elif pd.isna(name):
+    if pd.isna(name):
         name = "N/A"
-    elif pd.isna(disposables):
+    if pd.isna(disposables):
         disposables = "W/O Info"
 #         raise AssertionError("There is a product without any hardware or disposable elements. Its index is {}".format(idx+2))
-    elif pd.isna(area):
+    if pd.isna(area):
         area = "Unknow"
 #         raise AssertionError("There is a product without the diagnostic field, this is mandatory. Its index is {}".format(idx+2))
-    elif len(subareas[~pd.isna(subareas)].values) == 0:
+    if len(subareas[~pd.isna(subareas)].values) == 0:
         subareas = ["W/O Info"]
 #         raise AssertionError("There is a product without any diagnostic field detail, is mandatory to have at least one. Its index is {}".format(idx+2))
-    elif len(tests[~pd.isna(tests)].index) == 0:
+    if len(tests[~pd.isna(tests)].index) == 0:
         tests = ["W/O Info"]
 #         raise AssertionError("There is a product without any specific test, is mandatory to have at least one. Its index is {}".format(idx+2))
     product = {

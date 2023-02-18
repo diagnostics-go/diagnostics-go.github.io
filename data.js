@@ -1,7 +1,7 @@
 /* 
 This file contains all the generated from excel file to be imported in the webpage
 Made by: Edgar RP (JefeLitman) & Lina Ruiz 
-Version: 1.0
+Version: 1.1
 */
 
 get_all_brands = () => {

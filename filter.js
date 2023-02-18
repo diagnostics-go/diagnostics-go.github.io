@@ -1,7 +1,7 @@
 /* 
 This file contains all the code to generate and create the elements of filters inside the page
 Made by: Edgar RP (JefeLitman) & Lina Ruiz 
-Version: 1.0.0
+Version: 1.1.0
 */
 
 create_accordion_item = (name, id, elements) => {
@@ -19,14 +19,14 @@ create_accordion_item = (name, id, elements) => {
     acc_button.setAttribute("data-bs-toggle", "collapse");
     acc_button.setAttribute("data-bs-target", "#"+acc_id);
     acc_button.setAttribute("aria-controls", acc_id);
-    acc_button.ariaExpanded = "false";
+    acc_button.ariaExpanded = false;
     acc_button.textContent = name;
     acc_header.appendChild(acc_button);
     acc_item.appendChild(acc_header);
 
     let acc_flush = document.createElement("div");
     acc_flush.id = acc_id;
-    acc_flush.classList.add("accordion-collapse", "collapsed");
+    acc_flush.classList.add("accordion-collapse", "collapse");
     acc_flush.setAttribute("aria-labelledby", acc_header_id);
     acc_flush.setAttribute("data-bs-parent", "#accordionFlush");
     let acc_body = document.createElement("div"); 
@@ -59,7 +59,7 @@ create_accordion_item = (name, id, elements) => {
 
 create_accordion = (companies, diagnostics_fields, diagnostics_subfields, specific_tests) => {
     let parent_div = document.getElementById("accordionFlush");
-    parent_div.classList.add("accordion", "accordion-flush");
+    parent_div.classList.add("accordion");
     
     let items = [
         {"name": "SORTED BY",             "id": "flush-collapseOne",   "elements": ['Company', 'Diagnostics Fields', 'Diagnostics Sub-Fields', 'Tests']},

@@ -8,12 +8,6 @@ create_product_card = (brand, product_name, disposables, area, subareas, tests) 
     let parent_card = document.createElement("div");
     parent_card.classList.add("card");
 
-    let img = document.createElement("img");
-    img.src = "/gray_img.png";
-    img.classList.add("card-img-top", "d-none", "d-lg-flex");
-    img.style.maxHeight = "20vh";
-    //parent_card.appendChild(img);
-
     let card_body = document.createElement("div");
     card_body.classList.add("card-body");
     parent_card.appendChild(card_body);

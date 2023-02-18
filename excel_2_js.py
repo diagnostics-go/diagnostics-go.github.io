@@ -1,8 +1,9 @@
 """This file works as the main source to check and transform the excel file into a js file with all the products in it.
 Made by: Edgar RP (JefeLitman) & Lina Ruiz
-Version: 1.0
+Version: 1.1
 """
 
+import numpy as np
 import pandas as pd
 import numpy as np
 

@@ -79,5 +79,3 @@ create_tabs = (diagnostics_fields) => {
     
     return true;
 }
-
-

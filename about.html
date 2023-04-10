@@ -1,13 +1,13 @@
 <!-- 
 Made by: Edgar RP (JefeLitman) & Lina Ruiz
-Version: 0.0.2
+Version: 1.0
 -->
 <!doctype html>
 <html lang="de">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Diagnostics-Go</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
@@ -21,10 +21,46 @@ Version: 0.0.2
   <body>
     <div class="container-fluid">
       <div id="navbar" class="row"></div>
-      <div class="row justify-content-center text-center align-items-center" style="height: 93vh;">
-        <div class="col-12 col-lg-10 text-center">
-          <h1>Große Dinge kommen bald!</h1>
-          <h3 class="text-secondary">Wir arbeiten hart daran, Ihnen das beste Erlebnis zu bieten</h3>
+      <div class="row justify-content-center mt-5">
+        <div class="col-12 col-lg-10">
+          <div id="homepage" class="carousel slide">
+            <div class="carousel-indicators">
+              <button type="button" data-bs-target="#homepage" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+              <button type="button" data-bs-target="#homepage" data-bs-slide-to="1" aria-label="Slide 2"></button>
+              <button type="button" data-bs-target="#homepage" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>          
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="/static/gray_img.png" class="d-block w-100" alt="Gray image" style="max-height: 80vh;">
+                <div class="carousel-caption d-none d-lg-block">
+                  <h5>First slide label</h5>
+                  <p>Some representative placeholder content for the first slide.</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="/static/gray_img.png" class="d-block w-100" alt="Gray image" style="max-height: 80vh;">
+                <div class="carousel-caption d-none d-lg-block">
+                  <h5>Second slide label</h5>
+                  <p>Some representative placeholder content for the second slide.</p>
+                </div>
+              </div>
+              <div class="carousel-item">
+                <img src="/static/gray_img.png" class="d-block w-100" alt="Gray image" style="max-height: 80vh;">
+                <div class="carousel-caption d-none d-lg-block">
+                  <h5>Third slide label</h5>
+                  <p>Some representative placeholder content for the third slide.</p>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#homepage" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#homepage" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>

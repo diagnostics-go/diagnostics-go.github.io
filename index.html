@@ -22,7 +22,7 @@ Version: 0.1.9
   <body>
     <div class="container-fluid">
       <div id="navbar" class="row"></div>
-      <div class="row align-items-center" style="min-height: 93vh;">
+      <div id="search-panel" class="row align-items-center" style="min-height: 93vh;">
         <div>
           <div class="container-fluid">
             <div class="row justify-content-center">
@@ -33,7 +33,7 @@ Version: 0.1.9
                 <input class="form-control form-control-lg text-center" id="search" type="search" placeholder="Search" aria-label="Search">
               </div>
               <div class="col-1">
-                <button type="submit" class="btn btn-lg btn-outline-primary">
+                <button id="search-btn" type="submit" class="btn btn-lg btn-outline-primary">
                   <i class="bi bi-search"></i>
                 </button>
               </div>
@@ -81,13 +81,27 @@ Version: 0.1.9
       </div> -->
     </div>
     <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/lunr.min.js"></script>
     <script src="/js/nav.js"></script>
     <script src="/js/data.js"></script>
+    <script src="/js/canvas.js"></script>
     <script src="/js/products.js"></script>
-    <!-- <script src="/js/filter.js"></script>
-    <script src="/js/filter_nav.js"></script> -->
+    <script src="/js/filter.js"></script>
+    
+    <!-- <script src="/js/filter_nav.js"></script> -->
     <script>
       create_nav_header();
+      document.getElementById('search-btn').onclick = () => {
+        console.log("click");
+        const products = search_js(document.getElementById('search').value, get_all_products());
+        const search   = document.getElementById("search-panel");
+        while (search.hasChildNodes()) {
+          search.removeChild(search.firstChild);
+        }
+        create_canvas();
+        create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
+        display_products(products);
+      };
       // create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
       // create_tabs(get_diagnostics_fields());
       // display_products(get_all_products(), 'all');

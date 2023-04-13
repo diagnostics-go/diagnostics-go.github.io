@@ -100,3 +100,30 @@ search_engine = (event, objectData = []) => {
     });
     console.log(result);
 }
+
+search_js = (item, data) => {
+    var idx = lunr(function () {
+        this.ref('index')
+        this.field('area')
+        this.field('disposables')
+        this.field('name')
+        this.field('company')
+        this.field('subarea')
+        this.field('tests')
+
+        data.forEach(function (doc) {
+          this.add(doc)
+        }, this)
+    });
+
+    results = idx.search(item);
+    console.log('Results: ', results.length);
+
+    var results_full = results.map(function (element) {
+        return data.filter(function (value, index, arr) {
+            return value.index == element.ref;
+        })[0];
+    });
+    console.log(results_full);
+    return results_full;
+}

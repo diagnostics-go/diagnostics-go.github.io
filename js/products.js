@@ -42,45 +42,38 @@ create_product_card = (brand, product_name, disposables, area, subareas, tests) 
     return parent_card;
 }
 
-display_products = (products, id) => {
+display_products = (products) => {
     // Always require a div container with the id 'products'
-    let product_div = document.getElementById(id);
+    console.log(products.length);
+    let product_div = document.getElementById('search-panel');
+
+    let row = document.createElement("div");
+    let col = document.createElement("div");
+    let container = document.createElement("div");
+    let outline = document.createElement("div");
+    row.classList.add("row", "justify-content-center");
+    col.classList.add("col-10");
+    container.classList.add("container-fluid");
+    outline.classList.add("row", "align-items-top", "justify-content-center");
+    outline.id = 'products';
+    
+    row.appendChild(col);
+    col.appendChild(container);
+
     for (let product of products){
         let responsive_div = document.createElement("div");
         responsive_div.classList.add("col-10", "col-lg-3", "my-3");
-        if (id == "all"){
-            responsive_div.appendChild(create_product_card(
-                product.company,
-                product.name,
-                product.disposables,
-                product.area,
-                product.subareas,
-                product.tests
-            ));
-            product_div.appendChild(responsive_div);
-        }
-        if (product.area == "Point of Care" && id == "pointofcare"){
-            responsive_div.appendChild(create_product_card(
-                product.company,
-                product.name,
-                product.disposables,
-                product.area,
-                product.subareas,
-                product.tests
-            ));
-            product_div.appendChild(responsive_div);
-        }
-        if (product.area == "Labor" && id == "labor"){
-            responsive_div.appendChild(create_product_card(
-                product.company,
-                product.name,
-                product.disposables,
-                product.area,
-                product.subareas,
-                product.tests
-            ));
-            product_div.appendChild(responsive_div);
-        }
+        responsive_div.appendChild(create_product_card(
+            product.company,
+            product.name,
+            product.disposables,
+            product.area,
+            product.subareas,
+            product.tests
+        ));
+        outline.appendChild(responsive_div);
     }
+    container.appendChild(outline);
+    product_div.appendChild(row);
     return true;
 }

@@ -1,12 +1,12 @@
 """This file works as the main source to check and transform the excel file into a js file with all the products in it.
 Made by: Edgar RP (JefeLitman) & Lina Ruiz
-Version: 1.2
+Version: 1.3
 """
 
 import numpy as np
 import pandas as pd
 
-data = pd.read_excel("./data.xlsx")
+data = pd.read_excel("./data.xlsx", encoding='utf8')
 
 # Putting header firts
 with open("./data.js", "w") as data_file:

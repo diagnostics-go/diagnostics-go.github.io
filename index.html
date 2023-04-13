@@ -1,6 +1,6 @@
 <!-- 
 Made by: Edgar RP (JefeLitman) & Lina Ruiz
-Version: 0.1.9
+Version: 0.1.10
 -->
 <!doctype html>
 <html lang="de">
@@ -81,6 +81,7 @@ Version: 0.1.9
       </div> -->
     </div>
     <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/lunr.min.js"></script>
     <script src="/js/nav.js"></script>
     <script src="/js/data.js"></script>
     <script src="/js/products.js"></script>
@@ -88,6 +89,27 @@ Version: 0.1.9
     <script src="/js/filter_nav.js"></script> -->
     <script>
       create_nav_header();
+      products = get_all_products();
+      search_engine = lunr(function () {
+        this.field('title')
+        this.field('body')
+
+        this.add({
+          "title": "Twelfth-Night",
+          "body": "If music be the food of love, play on: Give me excess of it…",
+          "author": "William Shakespeare",
+          "id": "1"
+        })
+      })
+      // lunr(function () {
+      //   this.ref('index');
+      //   this.field('area');
+      //   this.field('disposables');
+      //   this.field('name');
+      //   for (let product in products){
+      //     this.add(product);
+      //   }
+      // })
       // create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
       // create_tabs(get_diagnostics_fields());
       // display_products(get_all_products(), 'all');

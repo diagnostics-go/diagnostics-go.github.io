@@ -1,3 +1,9 @@
+/* 
+This file contains all the code to generate and create the elements of navbar inside a page
+Made by: Lina Ruiz & Edgar RP (JefeLitman)
+Version: 0.2
+*/
+
 create_search_bar = () => {
 
     let row = document.createElement("div");
@@ -21,19 +27,23 @@ create_search_bar = () => {
     button_search.id = 'search-btn';
     button_search.onclick = () => {
         const products = search_js(document.getElementById('search').value, get_all_products());
-        const total_pages = Math.ceil((products.length)/16);
+        const paginationLimit = 16;
+        const total_pages = Math.ceil(products.length/paginationLimit);
         const search   = document.getElementById("search-panel");
         while (search.hasChildNodes()) {
           search.removeChild(search.firstChild, "active");
         }
         create_canvas();
-        if(total_pages>1)
-        {
-          body_pagination(total_pages, products);
-        }
-        else{
-            display_products(products);
-        }
+        body_pagination(total_pages, products, paginationLimit);
+            setCurrentPage(products, 1);
+            document.querySelectorAll(".page-link").forEach((item) => {
+                const pageIndex = Number(item.getAttribute("page-index"));
+                if (pageIndex) {
+                    item.addEventListener("click", () => {
+                        setCurrentPage(products,pageIndex, paginationLimit);
+                    });
+                }
+        });
         create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
     };
 
@@ -51,6 +61,7 @@ create_search_bar = () => {
 create_canvas = () => {
     
     let product_div = document.getElementById('search-panel');
+    product_div.style.minHeight = "1vh";
     let row = create_search_bar();
     
     let col = document.createElement("div");
@@ -102,12 +113,13 @@ create_canvas = () => {
     product_div.appendChild(row);
 }
 
-create_page_item = (text, link = "#") => {
+create_page_item = (index) => {
     let a = document.createElement("a");
-    a.textContent = text;
-    a.id = "page-" + text;
+    a.textContent = index;
+    a.setAttribute("page-index", index);
     a.classList.add("page-link");
-    a.href = "#" + text;
+    a.href = "#" + index;
+    
     let li = document.createElement("li");
     li.classList.add("page-item");
     li.appendChild(a);
@@ -118,7 +130,6 @@ create_page_item = (text, link = "#") => {
 create_pagination = (total_pages) => {
     
     let nav = document.createElement("nav");
-
     let ul_nav = document.createElement("ul");  
     ul_nav.classList.add("pagination", "justify-content-center", "m-3");
 
@@ -132,6 +143,24 @@ create_pagination = (total_pages) => {
     return nav;
 }
 
+create_button_top = () => {
+    let row_btn = document.createElement("div");
+    row_btn.classList.add("d-grid", "d-md-flex", "justify-content-md-end", "mb-3");
+
+    let button_top = document.createElement("button");
+    button_top.classList.add("btn", "btn-lg", "btn-outline-primary");
+    button_top.type = "submit";
+    button_top.id = 'top-btn';
+    button_top.textContent = "Back to top";
+    button_top.addEventListener("click", () => {
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0; 
+    });
+
+    row_btn.append(button_top);
+    return row_btn;
+}
+
 array_into_chunks = (array, size_of_chunk)  => {
     const arr = [];
     for (let i = 0; i < array.length; i += size_of_chunk) {
@@ -141,57 +170,43 @@ array_into_chunks = (array, size_of_chunk)  => {
     return arr;
 }
 
-body_pagination = (total_pages, products) => {
+body_pagination = (total_pages, products, paginationLimit) => {
     let nav = create_pagination(total_pages);
     let product_div = document.getElementById('search-panel');
     product_div.append(nav);
     
-    let product_pages = array_into_chunks(products, 16);
+    let product_pages = array_into_chunks(products, paginationLimit);
     for (let i = 0; i < total_pages; i++) {
         let panel = document.createElement("div");
-        panel.id = "#" + (i+1);
+        panel.classList.add("product-page")
+        panel.setAttribute("page-index", i+1);
         panel.style.display = "none";
         panel.append(display_products(product_pages[i]));
         product_div.append(panel);
     }
-
-    document.getElementById('page-1').classList.add("active", "disabled");
-    document.getElementById('#1').style.display = "block";
-
-    document.getElementById("page-1").onclick = () => {
-        document.getElementById('page-1').classList.add("active", "disabled");
-        document.getElementById('page-2').classList.remove("disabled", "active");
-        document.getElementById('page-3').classList.remove("disabled", "active");
-        document.getElementById('#1').style.display = "block";
-        document.getElementById('#2').style.display = "none";
-        document.getElementById('#3').style.display = "none";
-    }
-
-    document.getElementById("page-2").onclick = () => {
-        document.getElementById('page-1').classList.remove("disabled", "active");
-        document.getElementById('page-2').classList.add("active", "disabled");
-        document.getElementById('page-3').classList.remove("disabled", "active");
-        document.getElementById('#1').style.display = "none";
-        document.getElementById('#2').style.display = "block";
-        document.getElementById('#3').style.display = "none";
-    }
-
-    document.getElementById("page-3").onclick = () => {
-        document.getElementById('page-2').classList.remove("disabled", "active");
-        document.getElementById('page-3').classList.add("active", "disabled");
-        document.getElementById('#1').style.display = "none";
-        document.getElementById('#2').style.display = "none";
-        document.getElementById('#3').style.display = "block";
-    }
+    const button_top = create_button_top();
+    product_div.append(button_top);
 }
 
-show_pages = (products, page) =>{
-    
-    const new_page = page-1
-    let product_pages = array_into_chunks(products, 16);
-    let current_page  = document.getElementById('product_panel');
-    while (current_page.hasChildNodes()) {
-        current_page.removeChild(current_page.firstChild, "active");
-    }
-    display_products(product_pages[new_page]);
+handleActivePageNumber = (currentPage) => {
+    document.querySelectorAll(".page-link").forEach((a) => {
+        a.classList.remove("active", "disabled");
+        const pageIndex = Number(a.getAttribute("page-index"));
+        if (pageIndex == currentPage) {
+            a.classList.add("active", "disabled");
+        }
+    });
+    document.querySelectorAll(".product-page").forEach((div_product) => {
+        div_product.style.display = "none";
+        const pageIndex = Number(div_product.getAttribute("page-index"));
+        if (pageIndex == currentPage) {
+            div_product.style.display = "block";
+        }
+    });
+};
+
+setCurrentPage = (products, pageNum, paginationLimit) =>{
+    handleActivePageNumber(pageNum);
+    let product_pages = array_into_chunks(products, paginationLimit);
+    display_products(product_pages[pageNum-1]);
 }

@@ -1,7 +1,7 @@
 /* 
 This file contains all the code to generate and create the elements of filters inside the page
 Made by: Edgar RP (JefeLitman) & Lina Ruiz 
-Version: 1.1.0
+Version: 1.1.1
 */
 
 create_accordion_item = (name, id, elements) => {
@@ -37,9 +37,9 @@ create_accordion_item = (name, id, elements) => {
         acc_form.classList.add("form-check");
         acc_form.setAttribute("style", "text-align: left");
         let acc_input = document.createElement("input");
-        acc_input.id = "flexCheckDefault";
+        acc_input.id = element.toLowerCase();
         acc_input.classList.add("form-check-input");
-        acc_input.value = ""; 
+        acc_input.value = element; 
         acc_input.type = "checkbox";
         let acc_label = document.createElement("label");
         acc_label.classList.add("form-check-label");
@@ -74,7 +74,35 @@ create_accordion = (companies, diagnostics_fields, diagnostics_subfields, specif
             create_accordion_item(item.name, item.id, item.elements)
         );
     }
+
+    let button_apply = document.createElement("button");
+    button_apply.id = "btn-apply";
+    button_apply.type = "submit";
+    button_apply.classList.add("btn", "btn-outline-primary", "mt-3");
+    button_apply.textContent = "APPLY FILTERS";
+    button_apply.setAttribute("aria-label", "Apply");
+
+    parent_div.append(button_apply);
+
     return true;
+}
+
+apply_filters = (filter, products)  => {
+    const categories = ['company', 'diagnostics fields', 'diagnostics sub-fields', 'tests']
+    const categories_dict = {'company': 'company', 'diagnostics fields': 'area', 'diagnostics sub-fields': 'subareas', 'tests': 'tests'};
+    if(categories.includes(filter)){
+        sort_products = products.sort((a, b) => {
+            if (a[categories_dict[filter]] < b[categories_dict[filter]]) {
+              return -1;
+            }
+        });
+        console.log(sort_products);
+    }
+    else{
+        console.log(filter);
+        const new_products = search_js(filter, products);
+        console.log(new_products);
+    }
 }
 
 search_engine = (event, objectData = []) => {
@@ -124,6 +152,5 @@ search_js = (item, data) => {
             return value.index == element.ref;
         })[0];
     });
-    console.log(results_full);
     return results_full;
 }

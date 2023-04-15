@@ -22,6 +22,9 @@ Version: 0.1.9
   <body>
     <div class="container-fluid">
       <div id="navbar" class="row"></div>
+      <div  class="row justify-content-center mt-2">
+        <div id="alertPlaceholder" class="col-8 col-lg-4"></div>
+      </div>
       <div id="search-panel" class="row align-items-center" style="min-height: 93vh;">
         <div>
           <div class="container-fluid">
@@ -88,8 +91,19 @@ Version: 0.1.9
                 }
           });
           create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
+          document.getElementById('btn-apply').onclick = () => {
+            document.querySelectorAll(".form-check-input").forEach((item, index) => {
+              if(item.checked){
+                apply_filters(item.value.toLowerCase(), products);
+              }
+            });
+          };
+        }
+        else{
+          create_alert();
         }
       };          
+      
       // create_tabs(get_diagnostics_fields());
       // display_products(get_all_products(), 'all');
       

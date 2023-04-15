@@ -27,24 +27,36 @@ create_search_bar = () => {
     button_search.id = 'search-btn';
     button_search.onclick = () => {
         const products = search_js(document.getElementById('search').value, get_all_products());
-        const paginationLimit = 16;
-        const total_pages = Math.ceil(products.length/paginationLimit);
-        const search   = document.getElementById("search-panel");
-        while (search.hasChildNodes()) {
-          search.removeChild(search.firstChild, "active");
-        }
-        create_canvas();
-        body_pagination(total_pages, products, paginationLimit);
-            setCurrentPage(products, 1);
-            document.querySelectorAll(".page-link").forEach((item) => {
-                const pageIndex = Number(item.getAttribute("page-index"));
-                if (pageIndex) {
-                    item.addEventListener("click", () => {
-                        setCurrentPage(products,pageIndex, paginationLimit);
-                    });
+        if(products.length>0){
+            const paginationLimit = 16;
+            const total_pages = Math.ceil(products.length/paginationLimit);
+            const search   = document.getElementById("search-panel");
+            while (search.hasChildNodes()) {
+            search.removeChild(search.firstChild, "active");
+            }
+            create_canvas();
+            body_pagination(total_pages, products, paginationLimit);
+                setCurrentPage(products, 1);
+                document.querySelectorAll(".page-link").forEach((item) => {
+                    const pageIndex = Number(item.getAttribute("page-index"));
+                    if (pageIndex) {
+                        item.addEventListener("click", () => {
+                            setCurrentPage(products,pageIndex, paginationLimit);
+                        });
+                    }
+            });
+            create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
+            document.getElementById('btn-apply').onclick = () => {
+                document.querySelectorAll(".form-check-input").forEach((item, index) => {
+                if(item.checked){
+                    apply_filters(item.value.toLowerCase(), products);
                 }
-        });
-        create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
+                });
+            };
+        }
+        else{
+            create_alert();
+        }
     };
 
     let i_search = document.createElement("i");
@@ -209,4 +221,25 @@ setCurrentPage = (products, pageNum, paginationLimit) =>{
     handleActivePageNumber(pageNum);
     let product_pages = array_into_chunks(products, paginationLimit);
     display_products(product_pages[pageNum-1]);
+}
+
+create_alert = () => {
+    const search = document.getElementById('alertPlaceholder');
+    let alert  = document.createElement("div");
+    alert.classList.add("alert", "alert-warning");
+    alert.role = "alert";
+    
+    let button_alert = document.createElement('button');
+    button_alert.type = "button";
+    button_alert.classList.add("btn-close");
+    button_alert.setAttribute("data-bs-dismiss", "alert");
+    button_alert.ariaLabel = "Close"
+
+    let i = document.createElement("i");
+    i.classList.add("bi", "bi-exclamation-triangle", "flex-shrink-0", "m-2");
+    i.innerHTML = " No results for your search"
+    
+    alert.append(i);
+    alert.append(button_alert);
+    search.append(alert);
 }

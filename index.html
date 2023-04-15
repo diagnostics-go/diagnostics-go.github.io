@@ -55,30 +55,6 @@ Version: 0.1.9
           </div>
         </div>
       </div>
-      <!-- <div class="row justify-content-center mt-3">
-        <div class="d-none d-lg-block col-lg-8">
-          <div id="tab-header"></div>
-        </div>
-        <div class="col-10 col-lg-2 text-center">
-          <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Filter & Sort</button>
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasRightLabel">Filter & Sort</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <form class="d-flex mb-3" role="search" action="javascript:void(0);">
-                <input class="form-control me-2" id="search" type="search" placeholder="Search" aria-label="Search" > 
-                <button type="submit" class="btn btn-light" onclick="search_engine(document.getElementById('search').value,get_all_products())">
-                  <i class="bi bi-search"></i>
-                </button>
-              </form>
-              <div id="accordionFlush"></div>
-            </div>
-          </div>
-        </div>
-        <div id="nav-tabContent"> </div>
-      </div> -->
     </div>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/lunr.min.js"></script>
@@ -94,23 +70,26 @@ Version: 0.1.9
       document.getElementById('search-btn').onclick = () => {
         const products = search_js(document.getElementById('search').value, get_all_products());
         if(products.length>0){
-          const total_pages = Math.ceil((products.length)/16);
+          const paginationLimit = 16;
+          const total_pages = Math.ceil(products.length/paginationLimit);
           const search   = document.getElementById("search-panel");
           while (search.hasChildNodes()) {
             search.removeChild(search.firstChild);
           }
           create_canvas();
-          if(total_pages>1)
-          {
-            body_pagination(total_pages, products);
-          }
-          else{
-            display_products(products);
-          }
+          body_pagination(total_pages, products, paginationLimit);
+            setCurrentPage(products, 1);
+            document.querySelectorAll(".page-link").forEach((item) => {
+                const pageIndex = Number(item.getAttribute("page-index"));
+                if (pageIndex) {
+                    item.addEventListener("click", () => {
+                        setCurrentPage(products,pageIndex, paginationLimit);
+                    });
+                }
+          });
           create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
         }
       };          
-      // create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
       // create_tabs(get_diagnostics_fields());
       // display_products(get_all_products(), 'all');
       

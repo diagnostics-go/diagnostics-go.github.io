@@ -44,14 +44,14 @@ create_product_card = (brand, product_name, disposables, area, subareas, tests) 
 
 display_products = (products) => {
     // Always require a div container with the id 'products'
-    console.log(products.length);
-    let product_div = document.getElementById('search-panel');
+    // let product_div = document.getElementById('search-panel');
 
     let row = document.createElement("div");
     let col = document.createElement("div");
     let container = document.createElement("div");
     let outline = document.createElement("div");
     row.classList.add("row", "justify-content-center");
+    row.id = 'product_panel';
     col.classList.add("col-10");
     container.classList.add("container-fluid");
     outline.classList.add("row", "align-items-top", "justify-content-center");
@@ -74,6 +74,6 @@ display_products = (products) => {
         outline.appendChild(responsive_div);
     }
     container.appendChild(outline);
-    product_div.appendChild(row);
-    return true;
+    // product_div.appendChild(row);
+    return row;
 }

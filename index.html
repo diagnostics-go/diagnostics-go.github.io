@@ -92,16 +92,24 @@ Version: 0.1.9
     <script>
       create_nav_header();
       document.getElementById('search-btn').onclick = () => {
-        console.log("click");
         const products = search_js(document.getElementById('search').value, get_all_products());
-        const search   = document.getElementById("search-panel");
-        while (search.hasChildNodes()) {
-          search.removeChild(search.firstChild);
+        if(products.length>0){
+          const total_pages = Math.ceil((products.length)/16);
+          const search   = document.getElementById("search-panel");
+          while (search.hasChildNodes()) {
+            search.removeChild(search.firstChild);
+          }
+          create_canvas();
+          if(total_pages>1)
+          {
+            body_pagination(total_pages, products);
+          }
+          else{
+            display_products(products);
+          }
+          create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
         }
-        create_canvas();
-        create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
-        display_products(products);
-      };
+      };          
       // create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
       // create_tabs(get_diagnostics_fields());
       // display_products(get_all_products(), 'all');

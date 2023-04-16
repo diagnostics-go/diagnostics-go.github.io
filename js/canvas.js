@@ -53,6 +53,7 @@ create_search_bar = () => {
                 }
                 });
             };
+            sort_one();
         }
         else{
             create_alert();

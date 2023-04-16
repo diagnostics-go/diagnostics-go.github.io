@@ -35,6 +35,7 @@ create_accordion_item = (name, id, elements) => {
     for (let element of elements){
         let acc_form = document.createElement("div");
         acc_form.classList.add("form-check");
+        acc_form.id = element.toLowerCase();
         acc_form.setAttribute("style", "text-align: left");
         let acc_input = document.createElement("input");
         acc_input.id = element.toLowerCase();
@@ -87,12 +88,32 @@ create_accordion = (companies, diagnostics_fields, diagnostics_subfields, specif
     return true;
 }
 
+sort_one = () => {
+    var sort = document.getElementById("flush-collapseOne");
+    var check = sort.getElementsByTagName("INPUT");
+    for (let i = 0; i < check.length; i++) {
+        check[i].onclick = function () {
+            for (let i = 0; i < check.length; i++) {
+                if (check[i] != this && this.checked) {
+                    check[i].checked = false;
+                }
+            }
+        };
+    }
+}
+
 apply_filters = (filter, products)  => {
     const categories = ['company', 'diagnostics fields', 'diagnostics sub-fields', 'tests']
     const categories_dict = {'company': 'company', 'diagnostics fields': 'area', 'diagnostics sub-fields': 'subareas', 'tests': 'tests'};
     if(categories.includes(filter)){
         sort_products = products.sort((a, b) => {
-            if (a[categories_dict[filter]] < b[categories_dict[filter]]) {
+            var element_a = a[categories_dict[filter]];
+            var element_b = b[categories_dict[filter]];
+            if(filter == 'diagnostics sub-fields'){
+                element_a = a[categories_dict[filter]][0];
+                element_b = b[categories_dict[filter]][0];
+            }
+            if (element_a < element_b) {
               return -1;
             }
         });

@@ -96,8 +96,10 @@ Version: 0.1.9
               if(item.checked){
                 apply_filters(item.value.toLowerCase(), products);
               }
+              item.checked = false;
             });
           };
+          sort_one();
         }
         else{
           create_alert();

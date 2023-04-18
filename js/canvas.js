@@ -48,9 +48,10 @@ create_search_bar = () => {
             create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
             document.getElementById('btn-apply').onclick = () => {
                 document.querySelectorAll(".form-check-input").forEach((item, index) => {
-                if(item.checked){
-                    apply_filters(item.value.toLowerCase(), products);
-                }
+                    if(item.checked){
+                        apply_filters(item.value.toLowerCase(), products);
+                    }
+                    item.checked = false;
                 });
             };
             sort_one();
@@ -131,7 +132,7 @@ create_page_item = (index) => {
     a.textContent = index;
     a.setAttribute("page-index", index);
     a.classList.add("page-link");
-    a.href = "#" + index;
+    a.href = "#";
     
     let li = document.createElement("li");
     li.classList.add("page-item");
@@ -172,6 +173,18 @@ create_button_top = () => {
 
     row_btn.append(button_top);
     return row_btn;
+}
+
+search_btn = () => {
+    var group = document.getElementById("btn-categories");
+    var btn = group.getElementsByTagName("BUTTON");
+    for (let i = 0; i < btn.length; i++) {
+        btn[i].onclick = function () {
+            document.getElementById('search').value = btn[i].textContent;
+            document.getElementById('search-btn').click();
+
+        };
+    }
 }
 
 array_into_chunks = (array, size_of_chunk)  => {

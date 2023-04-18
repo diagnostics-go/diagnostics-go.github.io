@@ -46,12 +46,12 @@ Version: 0.1.9
                 <p class="fs-3">Popular searches</p>
               </div>
               <div class="col-12 col-lg-7">
-                <div class="btn-group btn-group-md" role="group" aria-label="Popular categories">
-                  <button type="button" class="btn btn-outline-primary mx-1">Categorie 1</button>
-                  <button type="button" class="btn btn-outline-primary mx-1">Categorie 2</button>
-                  <button type="button" class="btn btn-outline-primary mx-1">Categorie 3</button>
-                  <button type="button" class="btn btn-outline-primary mx-1">Categorie 4</button>
-                  <button type="button" class="btn btn-outline-primary mx-1">Categorie 5</button>
+                <div id="btn-categories" class="btn-group btn-group-md" role="group" aria-label="Popular categories">
+                  <button type="button" class="btn btn-outline-primary mx-1">Labor</button>
+                  <button type="button" class="btn btn-outline-primary mx-1">Point of care</button>
+                  <button type="button" class="btn btn-outline-primary mx-1">Abbott</button>
+                  <button type="button" class="btn btn-outline-primary mx-1">Roche</button>
+                  <button type="button" class="btn btn-outline-primary mx-1">Siemens</button>
                 </div>
               </div>
             </div>
@@ -70,6 +70,7 @@ Version: 0.1.9
     <!-- <script src="/js/filter_nav.js"></script> -->
     <script>
       create_nav_header();
+      search_btn();
       document.getElementById('search-btn').onclick = () => {
         const products = search_js(document.getElementById('search').value, get_all_products());
         if(products.length>0){

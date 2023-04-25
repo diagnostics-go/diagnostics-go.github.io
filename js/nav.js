@@ -1,7 +1,7 @@
 /* 
 This file contains all the code to generate and create the elements of navbar inside a page
 Made by: Lina Ruiz & Edgar RP (JefeLitman)
-Version: 1.0
+Version: 1.1
 */
 
 create_nav_item = (text, link = "#") => {
@@ -23,6 +23,7 @@ create_nav_item = (text, link = "#") => {
 create_nav_header = () => {
     // Always require a div container with the id 'navbar'
     let parent_div = document.getElementById("navbar");
+    parent_div.style.minHeight = "6vh";
     if (!parent_div){
         alert("A container with id 'navbar' doesn't exist in the html. The navbar won't be rendered.")
         return false
@@ -33,7 +34,6 @@ create_nav_header = () => {
     }
 
     let sites = [
-        {"de": "Produkte", "en": "products"},
         {"de": "Über uns", "en": "about"},
         {"de": "Account", "en": "account"},
         {"de": "Datenschutz", "en": "data_privacy"},

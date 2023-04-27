@@ -22,7 +22,10 @@ Version: 0.1.10
   <body>
     <div class="container-fluid">
       <div id="navbar" class="row"></div>
-      <div class="row align-items-center" style="min-height: 93vh;">
+      <div  class="row justify-content-center mt-2">
+        <div id="alertPlaceholder" class="col-8 col-lg-4"></div>
+      </div>
+      <div id="search-panel" class="row align-items-center" style="min-height: 93vh;">
         <div>
           <div class="container-fluid">
             <div class="row justify-content-center">
@@ -33,7 +36,7 @@ Version: 0.1.10
                 <input class="form-control form-control-lg text-center" id="search" type="search" placeholder="Search" aria-label="Search">
               </div>
               <div class="col-1">
-                <button type="submit" class="btn btn-lg btn-outline-primary">
+                <button id="search-btn" type="submit" class="btn btn-lg btn-outline-primary">
                   <i class="bi bi-search"></i>
                 </button>
               </div>
@@ -43,74 +46,67 @@ Version: 0.1.10
                 <p class="fs-3">Popular searches</p>
               </div>
               <div class="col-12 col-lg-7">
-                <div class="btn-group btn-group-md" role="group" aria-label="Popular categories">
-                  <button type="button" class="btn btn-outline-primary mx-1">Categorie 1</button>
-                  <button type="button" class="btn btn-outline-primary mx-1">Categorie 2</button>
-                  <button type="button" class="btn btn-outline-primary mx-1">Categorie 3</button>
-                  <button type="button" class="btn btn-outline-primary mx-1">Categorie 4</button>
-                  <button type="button" class="btn btn-outline-primary mx-1">Categorie 5</button>
+                <div id="btn-categories" class="btn-group btn-group-md" role="group" aria-label="Popular categories">
+                  <button type="button" class="btn btn-outline-primary mx-1">Labor</button>
+                  <button type="button" class="btn btn-outline-primary mx-1">Point of care</button>
+                  <button type="button" class="btn btn-outline-primary mx-1">Abbott</button>
+                  <button type="button" class="btn btn-outline-primary mx-1">Roche</button>
+                  <button type="button" class="btn btn-outline-primary mx-1">Siemens</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- <div class="row justify-content-center mt-3">
-        <div class="d-none d-lg-block col-lg-8">
-          <div id="tab-header"></div>
-        </div>
-        <div class="col-10 col-lg-2 text-center">
-          <button class="btn btn-outline-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">Filter & Sort</button>
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasRightLabel">Filter & Sort</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <form class="d-flex mb-3" role="search" action="javascript:void(0);">
-                <input class="form-control me-2" id="search" type="search" placeholder="Search" aria-label="Search" > 
-                <button type="submit" class="btn btn-light" onclick="search_engine(document.getElementById('search').value,get_all_products())">
-                  <i class="bi bi-search"></i>
-                </button>
-              </form>
-              <div id="accordionFlush"></div>
-            </div>
-          </div>
-        </div>
-        <div id="nav-tabContent"> </div>
-      </div> -->
     </div>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="/js/lunr.min.js"></script>
     <script src="/js/nav.js"></script>
     <script src="/js/data.js"></script>
+    <script src="/js/canvas.js"></script>
     <script src="/js/products.js"></script>
-    <!-- <script src="/js/filter.js"></script>
-    <script src="/js/filter_nav.js"></script> -->
+    <script src="/js/filter.js"></script>
+    
+    <!-- <script src="/js/filter_nav.js"></script> -->
     <script>
       create_nav_header();
-      products = get_all_products();
-      search_engine = lunr(function () {
-        this.field('title')
-        this.field('body')
-
-        this.add({
-          "title": "Twelfth-Night",
-          "body": "If music be the food of love, play on: Give me excess of it…",
-          "author": "William Shakespeare",
-          "id": "1"
-        })
-      })
-      // lunr(function () {
-      //   this.ref('index');
-      //   this.field('area');
-      //   this.field('disposables');
-      //   this.field('name');
-      //   for (let product in products){
-      //     this.add(product);
-      //   }
-      // })
-      // create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
+      search_btn();
+      document.getElementById('search-btn').onclick = () => {
+        const products = search_js(document.getElementById('search').value, get_all_products());
+        if(products.length>0){
+          const paginationLimit = 16;
+          const total_pages = Math.ceil(products.length/paginationLimit);
+          const search   = document.getElementById("search-panel");
+          while (search.hasChildNodes()) {
+            search.removeChild(search.firstChild);
+          }
+          create_canvas();
+          body_pagination(total_pages, products, paginationLimit);
+            setCurrentPage(products, 1);
+            document.querySelectorAll(".page-link").forEach((item) => {
+                const pageIndex = Number(item.getAttribute("page-index"));
+                if (pageIndex) {
+                    item.addEventListener("click", () => {
+                        setCurrentPage(products,pageIndex, paginationLimit);
+                    });
+                }
+          });
+          create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
+          document.getElementById('btn-apply').onclick = () => {
+            document.querySelectorAll(".form-check-input").forEach((item, index) => {
+              if(item.checked){
+                apply_filters(item.value.toLowerCase(), products);
+              }
+              item.checked = false;
+            });
+          };
+          sort_one();
+        }
+        else{
+          create_alert();
+        }
+      };          
+      
       // create_tabs(get_diagnostics_fields());
       // display_products(get_all_products(), 'all');
       

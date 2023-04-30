@@ -1,15 +1,16 @@
 /* 
 This file contains all the code to generate and create the elements of navbar inside a page
 Made by: Lina Ruiz & Edgar RP (JefeLitman)
-Version: 0.2
+Version: 1.0
 */
 
 create_search_bar = () => {
 
-    let row = document.createElement("div");
+    let row = document.createElement("form");
     let col_input = document.createElement("div");
     let col_button = document.createElement("div");
     row.classList.add("row", "justify-content-center", "mt-3");
+    row.action = "javascript:void(0);";
     col_input.classList.add("col-8", "col-lg-6", "text-center");
     col_button.classList.add("col-1");
 
@@ -26,7 +27,8 @@ create_search_bar = () => {
     button_search.type = "submit";
     button_search.id = 'search-btn';
     button_search.onclick = () => {
-        const products = search_js(document.getElementById('search').value, get_all_products());
+        let search_engine = get_search_engine();
+        let products = search_result(search_engine, document.getElementById('search').value);
         if(products.length>0){
             const paginationLimit = 16;
             const total_pages = Math.ceil(products.length/paginationLimit);

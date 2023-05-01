@@ -88,6 +88,49 @@ create_accordion = (companies, diagnostics_fields, diagnostics_subfields, specif
     return true;
 }
 
+draw_products_search = (products) =>{
+    if(products.length>0){
+        const paginationLimit = 16;
+        const total_pages = Math.ceil(products.length/paginationLimit);
+        const search   = document.getElementById("search-panel");
+        while (search.hasChildNodes()) {
+          search.removeChild(search.firstChild);
+        }
+        create_canvas();
+        body_pagination(total_pages, products, paginationLimit);
+          setCurrentPage(products, 1);
+          document.querySelectorAll(".page-link").forEach((item) => {
+              const pageIndex = Number(item.getAttribute("page-index"));
+              if (pageIndex) {
+                  item.addEventListener("click", () => {
+                      setCurrentPage(products,pageIndex, paginationLimit);
+                  });
+              }
+        });
+
+        let brands = products.map(({ subareas }) => subareas).flat();
+        var diagnostics_subfields = brands.filter((value, index, self) => self.indexOf(value) === index);
+
+        let brands_tests = products.map(({ tests }) => tests).flat();
+        var diagnostics_test = brands_tests.filter((value, index, self) => self.indexOf(value) === index);
+        
+        create_accordion(get_all_brands(), get_diagnostics_fields(), diagnostics_subfields, diagnostics_test);
+        document.getElementById('btn-apply').onclick = () => {
+            document.getElementById('btn-close-canvas').click();
+            document.querySelectorAll(".form-check-input").forEach((item, index) => {
+                if(item.checked){
+                apply_filters(item.value.toLowerCase(), products);
+                }
+                item.checked = false;
+            });
+        };
+        sort_one();
+      }
+      else{
+        create_alert();
+      }
+}
+
 sort_one = () => {
     var sort = document.getElementById("flush-collapseOne");
     var check = sort.getElementsByTagName("INPUT");
@@ -117,11 +160,11 @@ apply_filters = (filter, products)  => {
               return -1;
             }
         });
-        console.log(sort_products);
+        draw_products_search(sort_products);
     }
     else{
-        console.log(filter);
-        const new_products = search_js(filter, products);
-        console.log(new_products);
+        let search_engine = get_search_engine(products);
+        let new_products = search_result(search_engine, filter);
+        draw_products_search(new_products);
     }
 }

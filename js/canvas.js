@@ -29,38 +29,7 @@ create_search_bar = () => {
     button_search.onclick = () => {
         let search_engine = get_search_engine();
         let products = search_result(search_engine, document.getElementById('search').value);
-        if(products.length>0){
-            const paginationLimit = 16;
-            const total_pages = Math.ceil(products.length/paginationLimit);
-            const search   = document.getElementById("search-panel");
-            while (search.hasChildNodes()) {
-            search.removeChild(search.firstChild, "active");
-            }
-            create_canvas();
-            body_pagination(total_pages, products, paginationLimit);
-                setCurrentPage(products, 1);
-                document.querySelectorAll(".page-link").forEach((item) => {
-                    const pageIndex = Number(item.getAttribute("page-index"));
-                    if (pageIndex) {
-                        item.addEventListener("click", () => {
-                            setCurrentPage(products,pageIndex, paginationLimit);
-                        });
-                    }
-            });
-            create_accordion(get_all_brands(), get_diagnostics_fields(), get_diagnostics_subfields(), get_specific_tests());
-            document.getElementById('btn-apply').onclick = () => {
-                document.querySelectorAll(".form-check-input").forEach((item, index) => {
-                    if(item.checked){
-                        apply_filters(item.value.toLowerCase(), products);
-                    }
-                    item.checked = false;
-                });
-            };
-            sort_one();
-        }
-        else{
-            create_alert();
-        }
+        draw_products_search(products);
     };
 
     let i_search = document.createElement("i");
@@ -109,6 +78,7 @@ create_canvas = () => {
     title.textContent = "Filter & Sort";
 
     button_header.classList.add("btn-close");
+    button_header.id = "btn-close-canvas";
     button_header.setAttribute("data-bs-dismiss", "offcanvas");
     button_header.setAttribute("aria-label", "Close");
 

@@ -1,6 +1,6 @@
 <!-- 
 Made by: Edgar RP (JefeLitman) & Lina Ruiz
-Version: 0.1.12
+Version: 0.2.0
 -->
 <!doctype html>
 <html lang="de">
@@ -22,7 +22,7 @@ Version: 0.1.12
   <body>
     <div class="container-fluid">
       <div id="navbar" class="row"></div>
-      <div  class="row justify-content-center mt-2">
+      <div class="row justify-content-center mt-2">
         <div id="alertPlaceholder" class="col-8 col-lg-4"></div>
       </div>
       <div id="search-panel" class="row align-items-center" style="min-height: 93vh;">
@@ -46,12 +46,8 @@ Version: 0.1.12
                 <p class="fs-3">Popular searches</p>
               </div>
               <div class="col-12 col-lg-7">
-                <div id="btn-categories" class="btn-group btn-group-md" role="group" aria-label="Popular categories">
-                  <button type="button" class="btn btn-outline-primary mx-1">Labor</button>
-                  <button type="button" class="btn btn-outline-primary mx-1">Point of care</button>
-                  <button type="button" class="btn btn-outline-primary mx-1">Abbott</button>
-                  <button type="button" class="btn btn-outline-primary mx-1">Roche</button>
-                  <button type="button" class="btn btn-outline-primary mx-1">Siemens</button>
+                <div class="container-fluid">
+                  <div id="popular" class="row"></div>
                 </div>
               </div>
             </div>
@@ -67,11 +63,12 @@ Version: 0.1.12
     <script src="/js/canvas.js"></script>
     <script src="/js/products.js"></script>
     <script src="/js/filter.js"></script>
+    <script src="/js/popular_btns.js"></script>
     
     <!-- <script src="/js/filter_nav.js"></script> -->
     <script>
       create_nav_header();
-      search_btn(); // To attach search action to the popular categories
+      draw_popular_buttons();
       document.getElementById('search-btn').onclick = () => {
         //const products = search_js(document.getElementById('search').value, get_all_products());
         let all_products = get_all_products();

@@ -117,23 +117,29 @@ draw_products_search = (products) =>{
         create_accordion(get_all_brands(), get_diagnostics_fields(), diagnostics_subfields, diagnostics_test);
         document.getElementById('btn-apply').onclick = () => {
             document.getElementById('btn-close-canvas').click();
+            let filters = [];
             document.querySelectorAll(".form-check-input").forEach((item, index) => {
                 if(item.checked){
-                apply_filters(item.value.toLowerCase(), products);
+                    filters.push(item.value);
                 }
                 item.checked = false;
             });
+            apply_filters(filters, products);
         };
-        sort_one();
+        
+        var accordion_types = ["flush-collapseOne", "flush-collapseTwo", "flush-collapseThree", "flush-collapseFour", "flush-collapseFive"];
+        for (let i = 0; i < accordion_types.length; i++) {
+            check_one(accordion_types[i]);
+        }
       }
       else{
         create_alert();
       }
 }
 
-sort_one = () => {
-    var sort = document.getElementById("flush-collapseOne");
-    var check = sort.getElementsByTagName("INPUT");
+check_one = (accordion) => {
+    var acc = document.getElementById(accordion);
+    var check = acc.getElementsByTagName("INPUT");
     for (let i = 0; i < check.length; i++) {
         check[i].onclick = function () {
             for (let i = 0; i < check.length; i++) {
@@ -145,26 +151,52 @@ sort_one = () => {
     }
 }
 
-apply_filters = (filter, products)  => {
-    const categories = ['company', 'diagnostics fields', 'diagnostics sub-fields', 'tests']
-    const categories_dict = {'company': 'company', 'diagnostics fields': 'area', 'diagnostics sub-fields': 'subareas', 'tests': 'tests'};
-    if(categories.includes(filter)){
-        sort_products = products.sort((a, b) => {
-            var element_a = a[categories_dict[filter]];
-            var element_b = b[categories_dict[filter]];
-            if(filter == 'diagnostics sub-fields'){
-                element_a = a[categories_dict[filter]][0];
-                element_b = b[categories_dict[filter]][0];
+apply_filters = (filters, products)  => {
+    const categories = ['Company', 'Diagnostics Fields', 'Diagnostics Sub-Fields', 'Tests']
+    const categories_dict = {'Company': 'company', 'Diagnostics Fields': 'area', 'Diagnostics Sub-Fields': 'subareas', 'Tests': 'tests'};
+    
+    let new_products = [];
+    for (const filter of filters) {
+        console.log(filter);
+        if(categories.includes(filter)){
+            sort_products = products.sort((a, b) => {
+                var element_a = a[categories_dict[filter]];
+                var element_b = b[categories_dict[filter]];
+                if(filter == 'diagnostics sub-fields'){
+                    element_a = a[categories_dict[filter]][0];
+                    element_b = b[categories_dict[filter]][0];
+                }
+                if (element_a < element_b) {
+                return -1;
+                }
+            });
+            draw_products_search(sort_products);
+        }
+        else{
+            if(get_all_brands().includes(filter)){
+                new_products = products.filter((value, index, self) => value.company == filter);
             }
-            if (element_a < element_b) {
-              return -1;
+            if(get_diagnostics_fields().includes(filter)){
+                new_products = products.filter((value, index, self) => value.area == filter);
             }
-        });
-        draw_products_search(sort_products);
-    }
-    else{
-        let search_engine = get_search_engine(products);
-        let new_products = search_result(search_engine, filter);
+            if(get_diagnostics_subfields().includes(filter)){
+                new_products = products.filter((value, index, self) => {
+                    if(value.subareas.includes(filter)){
+                        return value;
+                    }
+                });
+            }
+            if(get_specific_tests().includes(filter)){
+                new_products = products.filter((value, index, self) => {
+                    if(value.tests.includes(filter)){
+                        return value;
+                    }
+                });
+            }
+            // let search_engine = get_search_engine(products);
+            // let new_products = search_result(search_engine, filter);
+            // let new_products = products.filter((value, index, self) => value.company == filter);
+        }
         draw_products_search(new_products);
     }
 }

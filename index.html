@@ -1,6 +1,6 @@
 <!-- 
 Made by: Edgar RP (JefeLitman) & Lina Ruiz
-Version: 0.2.0
+Version: 0.3
 -->
 <!doctype html>
 <html lang="de">
@@ -47,7 +47,7 @@ Version: 0.2.0
               </div>
               <div class="col-12 col-lg-7">
                 <div class="container-fluid">
-                  <div id="popular" class="row"></div>
+                  <div id="popular" class="row align-items-center"></div>
                 </div>
               </div>
             </div>
@@ -70,11 +70,12 @@ Version: 0.2.0
       create_nav_header();
       draw_popular_buttons();
       document.getElementById('search-btn').onclick = () => {
-        //const products = search_js(document.getElementById('search').value, get_all_products());
-        let all_products = get_all_products();
-        let search_engine = get_search_engine();
-        let products = search_result(search_engine, document.getElementById('search').value);
-        draw_products_search(products);
+      let search_query = document.getElementById('search').value;
+      let search_engine = get_search_engine();
+      let products = search_result(search_engine, search_query);
+      window.localStorage.setItem("query", search_query)
+      window.localStorage.setItem("result_list", JSON.stringify(products))
+      draw_products_search(products);
       };          
     </script>
   </body>

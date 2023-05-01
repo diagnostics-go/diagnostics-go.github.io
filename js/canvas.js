@@ -1,7 +1,7 @@
 /* 
 This file contains all the code to generate and create the elements of navbar inside a page
 Made by: Lina Ruiz & Edgar RP (JefeLitman)
-Version: 1.0
+Version: 1.1
 */
 
 create_search_bar = () => {
@@ -175,18 +175,6 @@ create_button_top = () => {
 
     row_btn.append(button_top);
     return row_btn;
-}
-
-search_btn = () => {
-    var group = document.getElementById("btn-categories");
-    var btn = group.getElementsByTagName("BUTTON");
-    for (let i = 0; i < btn.length; i++) {
-        btn[i].onclick = function () {
-            document.getElementById('search').value = btn[i].textContent;
-            document.getElementById('search-btn').click();
-
-        };
-    }
 }
 
 array_into_chunks = (array, size_of_chunk)  => {

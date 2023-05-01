@@ -1,7 +1,7 @@
 /* 
 This file contains all the code to generate and create the elements of navbar inside a page
 Made by: Lina Ruiz & Edgar RP (JefeLitman)
-Version: 1.1
+Version: 1.2
 */
 
 create_search_bar = () => {
@@ -9,10 +9,12 @@ create_search_bar = () => {
     let row = document.createElement("form");
     let col_input = document.createElement("div");
     let col_button = document.createElement("div");
-    row.classList.add("row", "justify-content-center", "mt-3");
+    let col_home = document.createElement("div");
+    row.classList.add("row", "justify-content-center", "text-center","mt-3");
     row.action = "javascript:void(0);";
     col_input.classList.add("col-8", "col-lg-6", "text-center");
     col_button.classList.add("col-1");
+    col_home.classList.add("col-1");
 
     let input_search = document.createElement("input");
     input_search.classList.add("form-control", "form-control-lg", "text-center");
@@ -20,6 +22,7 @@ create_search_bar = () => {
     input_search.type = "search";
     input_search.placeholder = "Search";
     input_search.ariaLabel = "Search";
+    input_search.value = window.localStorage.getItem("query")
     col_input.append(input_search);
 
     let button_search = document.createElement("button");
@@ -27,8 +30,11 @@ create_search_bar = () => {
     button_search.type = "submit";
     button_search.id = 'search-btn';
     button_search.onclick = () => {
+        let search_query = document.getElementById('search').value;
         let search_engine = get_search_engine();
-        let products = search_result(search_engine, document.getElementById('search').value);
+        let products = search_result(search_engine, search_query);
+        window.localStorage.setItem("query", search_query)
+        window.localStorage.setItem("result_list", JSON.stringify(products))
         draw_products_search(products);
     };
 
@@ -38,8 +44,19 @@ create_search_bar = () => {
     button_search.append(i_search);
     col_button.append(button_search);
 
+    let button_home = document.createElement("button");
+    button_home.classList.add("btn", "btn-lg", "btn-outline-primary");
+    button_home.type = "button";
+    button_home.onclick = () => location.reload()
+
+    let i_home = document.createElement("i");
+    i_home.classList.add("bi", "bi-house");
+    button_home.appendChild(i_home);
+    col_home.appendChild(button_home);
+
     row.append(col_input);
     row.append(col_button);
+    row.append(col_home);
     return row;
 }
 

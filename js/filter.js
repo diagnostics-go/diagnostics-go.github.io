@@ -155,7 +155,6 @@ apply_filters = (filters, products)  => {
     const categories = ['Company', 'Diagnostics Fields', 'Diagnostics Sub-Fields', 'Tests']
     const categories_dict = {'Company': 'company', 'Diagnostics Fields': 'area', 'Diagnostics Sub-Fields': 'subareas', 'Tests': 'tests'};
     
-    let new_products = [];
     for (const filter of filters) {
         console.log(filter);
         if(categories.includes(filter)){
@@ -173,30 +172,32 @@ apply_filters = (filters, products)  => {
             draw_products_search(sort_products);
         }
         else{
-            if(get_all_brands().includes(filter)){
-                new_products = products.filter((value, index, self) => value.company == filter);
-            }
-            if(get_diagnostics_fields().includes(filter)){
-                new_products = products.filter((value, index, self) => value.area == filter);
-            }
-            if(get_diagnostics_subfields().includes(filter)){
-                new_products = products.filter((value, index, self) => {
-                    if(value.subareas.includes(filter)){
-                        return value;
-                    }
-                });
-            }
-            if(get_specific_tests().includes(filter)){
-                new_products = products.filter((value, index, self) => {
-                    if(value.tests.includes(filter)){
-                        return value;
-                    }
-                });
-            }
-            // let search_engine = get_search_engine(products);
-            // let new_products = search_result(search_engine, filter);
-            // let new_products = products.filter((value, index, self) => value.company == filter);
+            products = recursive_search(products, filter);
         }
-        draw_products_search(new_products);
+        draw_products_search(products);
     }
+}
+
+recursive_search = (products, filter) => {
+    if(get_all_brands().includes(filter)){
+        new_products = products.filter((value, index, self) => value.company == filter);
+    }
+    if(get_diagnostics_fields().includes(filter)){
+        new_products = products.filter((value, index, self) => value.area == filter);
+    }
+    if(get_diagnostics_subfields().includes(filter)){
+        new_products = products.filter((value, index, self) => {
+            if(value.subareas.includes(filter)){
+                return value;
+            }
+        });
+    }
+    if(get_specific_tests().includes(filter)){
+        new_products = products.filter((value, index, self) => {
+            if(value.tests.includes(filter)){
+                return value;
+            }
+        });
+    }
+    return new_products;
 }

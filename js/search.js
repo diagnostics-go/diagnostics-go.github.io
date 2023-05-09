@@ -1,7 +1,7 @@
 /* 
 This file contains the logic to use the fuse.js search engine
 Made by: Edgar RP (JefeLitman) & Lina Ruiz 
-Version: 1.1
+Version: 1.2
 */
 
 get_search_engine = (products) => {
@@ -82,17 +82,46 @@ search_result = (search_engine, text) => {
         }
         for (let element of value.subareas){
             if (element.toLowerCase().includes(text_lower)){
-
                 return true;
             }
         }
         for (let element of value.tests){
             if (element.toLowerCase().includes(text_lower)){
-
                 return true;
             }
         }
         return false;
     })
-    return filtered_results
+    strict_filtered = filtered_results.filter( (value) => {
+        if (value.disposables.toLowerCase().includes(text_lower)){
+            for (let word of value.disposables.toLowerCase().split(" ")){
+                if (word.toLowerCase() === text_lower){
+                    return true;
+                }
+            }
+        }
+        for (let element of value.subareas){
+            if (element.toLowerCase().includes(text_lower)){
+                for (let word of element.toLowerCase().split(" ")){
+                    if (word.toLowerCase() === text_lower){
+                        return true;
+                    }
+                }
+            }
+        }
+        for (let element of value.tests){
+            if (element.toLowerCase().includes(text_lower)){
+                for (let word of element.toLowerCase().split(" ")){
+                    if (word.toLowerCase() === text_lower){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false
+    })
+    if (strict_filtered.length == 0){
+        return filtered_results
+    }
+    return strict_filtered
 }
